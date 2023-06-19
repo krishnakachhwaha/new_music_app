@@ -11,7 +11,11 @@ class _library_pgState extends State<library_pg> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(child: Text('hllllooooo')),
+      body: Center(
+          child: Text(
+        'hllllooooo',
+        style: TextStyle(fontSize: 30, color: Colors.white),
+      )),
     );
   }
 }

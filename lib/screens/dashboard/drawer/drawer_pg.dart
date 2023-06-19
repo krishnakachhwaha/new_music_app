@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hidden_drawer_menu/hidden_drawer_menu.dart';
 import 'package:music_app/screens/dashboard/bottomNavi/home_pg.dart';
+import 'package:music_app/screens/dashboard/bottomNavi/search_pg.dart';
 
 void main() => runApp(MyApp());
 
@@ -8,10 +9,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(),
+      home: search_pg(),
     );
   }
 }
@@ -28,24 +30,22 @@ class _MyHomePageState extends State<MyHomePage> {
   void initState() {
     itens.add(new ScreenHiddenDrawer(
         new ItemHiddenMenu(
-          name: "",
+          name: "hlo",
           baseStyle:
-              TextStyle(color: Colors.white.withOpacity(0.8), fontSize: 28.0),
+              TextStyle(color: Colors.white.withOpacity(0.8), fontSize: 25.0),
           colorLineSelected: Colors.teal,
           selectedStyle: TextStyle(),
         ),
         home_pg()));
-
-    // itens.add(new ScreenHiddenDrawer(
-    //     new ItemHiddenMenu(
-    //       name: "Screen 2",
-    //       baseStyle:
-    //           TextStyle(color: Colors.white.withOpacity(0.8), fontSize: 28.0),
-    //       colorLineSelected: Colors.orange,
-    //     ),
-    //     SecondSreen()));
-
-    super.initState();
+    itens.add(new ScreenHiddenDrawer(
+        new ItemHiddenMenu(
+          name: "bye",
+          baseStyle:
+              TextStyle(color: Colors.white.withOpacity(0.8), fontSize: 25.0),
+          colorLineSelected: Colors.teal,
+          selectedStyle: TextStyle(),
+        ),
+        home_pg()));
   }
 
   @override

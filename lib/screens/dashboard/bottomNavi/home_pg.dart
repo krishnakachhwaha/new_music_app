@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:line_icons/line_icons.dart';
-import 'package:music_app/screens/dashboard/bottomNavi/search_pg.dart';
 
 import '../slider/slider_pg.dart';
-import 'library_pg.dart';
-import 'world_pg.dart';
 
 class home_pg extends StatefulWidget {
   const home_pg({Key? key}) : super(key: key);
@@ -15,18 +12,22 @@ class home_pg extends StatefulWidget {
 }
 
 class _home_pgState extends State<home_pg> {
-  int _selectedIndex = 0;
-  static const TextStyle optionStyle =
-      TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
+  int selectedIndex = 0;
+  List<Color> colors = [
+    Colors.red,
+    Colors.blue,
+    Colors.grey,
+    Colors.green,
+  ];
+  List<Text> text = [
+    Text('HOME'),
+    Text('SEARCH'),
+    Text('LIBRARY'),
+    Text('WORLD'),
+  ];
 
-  var arrnames = [home_pg(), search_pg(), library_pg(), world_pg()];
-
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-  }
-
+  /* var arrnames = [home_pg(), search_pg(), library_pg(), world_pg()];*/
+  PageController controller = PageController();
   @override
   Widget build(BuildContext context) {
     var mq = MediaQuery.of(context);
@@ -34,70 +35,85 @@ class _home_pgState extends State<home_pg> {
     final mqw = MediaQuery.of(context).size.width;
 
     return DefaultTabController(
-      length: 4,
-      child: Scaffold(
-          backgroundColor: Colors.black,
-          appBar: AppBar(
+        length: 4,
+        child: Scaffold(
             backgroundColor: Colors.black,
-            bottom: PreferredSize(
-              preferredSize: Size.fromHeight(mqh * 0.35),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(right: 110, bottom: 35),
-                    child: Text(
-                      'Trending right now',
-                      style: TextStyle(
-                          fontSize: 30,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white),
+            appBar: AppBar(
+              backgroundColor: Colors.black,
+              bottom: PreferredSize(
+                preferredSize: Size.fromHeight(mqh * 0.35),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(right: 110, bottom: 35),
+                      child: Text(
+                        'Trending right now',
+                        style: TextStyle(
+                            fontSize: 30,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white),
+                      ),
                     ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 45),
-                    child: Container(
-                        width: mqw * 0.9,
-                        height: mqh * 0.2,
-                        child: slider_pg()),
-                  ),
-                  TabBar(
-                      indicator: BoxDecoration(
-                          borderRadius: BorderRadius.circular(15),
-                          gradient: LinearGradient(
-                              begin: Alignment.centerRight,
-                              end: Alignment.centerLeft,
-                              colors: [
-                                Colors.purple.shade500,
-                                Colors.purple.shade900,
-                                Colors.purple.shade900,
-                              ])),
-                      isScrollable: true,
-                      tabs: [
-                        Tab(child: Text('Trending right now')),
-                        Tab(child: Text('Rock')),
-                        Tab(child: Text('Hip Hop')),
-                        Tab(child: Text('Electro')),
-                      ]),
-                ],
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 50),
+                      child: Container(
+                          margin: EdgeInsets.symmetric(horizontal: 41),
+                          width: mqw * 1,
+                          height: mqh * 0.2,
+                          child: slider_pg()),
+                    ),
+                    TabBar(
+                        indicator: BoxDecoration(
+                            borderRadius: BorderRadius.circular(15),
+                            gradient: LinearGradient(
+                                begin: Alignment.centerRight,
+                                end: Alignment.centerLeft,
+                                colors: [
+                                  Colors.purple.shade500,
+                                  Colors.purple.shade900,
+                                  Colors.purple.shade900,
+                                ])),
+                        isScrollable: true,
+                        tabs: [
+                          Tab(child: Text('Trending right now')),
+                          Tab(child: Text('Rock')),
+                          Tab(child: Text('Hip Hop')),
+                          Tab(child: Text('Electro')),
+                        ]),
+                  ],
+                ),
               ),
             ),
-          ),
-          body: Padding(
-            padding:
-                const EdgeInsetsDirectional.only(start: 10, end: 10, bottom: 5),
-            child: Column(
-              children: [
-                SizedBox(
-                  height: mqh * 0.330,
-                ),
-                Container(
-                  width: mqw * double.infinity,
-                  height: mqh * 0.09,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(15),
-                      color: Colors.white30),
-                  child: GNav(
+            body: PageView.builder(
+                itemCount: 4,
+                controller: controller,
+                onPageChanged: (page) {
+                  setState(() {
+                    selectedIndex = page;
+                  });
+                },
+                itemBuilder: (context, position) {
+                  return Container(
+                    color: colors[position],
+                    child: Center(child: text[position]),
+                  );
+                }),
+            bottomNavigationBar: Padding(
+              padding:
+                  const EdgeInsetsDirectional.only(start: 5, end: 5, bottom: 5),
+              child: Column(
+                children: [
+                  SizedBox(
+                    height: mqh * 0.760,
+                  ),
+                  Container(
+                    width: mqw * double.infinity,
+                    height: mqh * 0.08,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(15),
+                        color: Colors.white30),
+                    child: GNav(
                       rippleColor: Colors.grey.shade800,
                       haptic: true,
                       tabBorderRadius: 13,
@@ -137,12 +153,19 @@ class _home_pgState extends State<home_pg> {
                         GButton(
                           icon: LineIcons.globe,
                           text: 'world',
-                        )
-                      ]),
-                ),
-              ],
-            ),
-          )),
-    );
+                        ),
+                      ],
+                      selectedIndex: selectedIndex,
+                      onTabChange: (index) {
+                        setState(() {
+                          selectedIndex = index;
+                        });
+                        controller.jumpToPage(index);
+                      },
+                    ),
+                  ),
+                ],
+              ),
+            )));
   }
 }

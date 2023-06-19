@@ -13,7 +13,7 @@ class _trending_pgState extends State<trending_pg> {
     return Scaffold(
       body: Center(
         child: Text('noooooooooooo',
-            style: TextStyle(fontSize: 15, color: Colors.white)),
+            style: TextStyle(fontSize: 35, color: Colors.white)),
       ),
     );
   }

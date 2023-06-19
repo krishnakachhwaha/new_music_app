@@ -16,96 +16,296 @@ class _search_pgState extends State<search_pg> {
     final mqw = MediaQuery.of(context).size.width;
     final mqh = MediaQuery.of(context).size.height;
     return Scaffold(
+      backgroundColor: Colors.black,
       body: SingleChildScrollView(
-        child: Container(
-          decoration: BoxDecoration(
-              gradient: LinearGradient(
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                  colors: [
-                Color.fromRGBO(91, 77, 124, 1.0),
-                Color.fromRGBO(34, 34, 61, 1)
-              ])),
-          child: Padding(
-            padding:
-                const EdgeInsetsDirectional.only(start: 15, end: 15, top: 65),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SizedBox(height: mqh * 0.03),
-                Text('Recent favourites',
-                    style: TextStyle(
-                        fontSize: 35,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white)),
-                SizedBox(height: mqh * 0.03),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    Container(
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(35),
-                          color: Colors.pinkAccent),
-                      width: mqw * 0.42,
-                      height: mqh * 0.22,
-                      child: Icon(FontAwesomeIcons.music, size: 50),
-                    ),
-                    Container(
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(35),
-                          color: Colors.blue.shade200),
-                      child: Icon(FontAwesomeIcons.music, size: 50),
-                      width: mqw * 0.42,
-                      height: mqh * 0.22,
-                    ),
-                  ],
+        child: Padding(
+          padding:
+              const EdgeInsetsDirectional.only(start: 10, end: 10, top: 80),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              TextField(
+                decoration: InputDecoration(
+                  hintText: 'Search your vibe',
+                  hintStyle: TextStyle(color: Colors.white),
+                  suffix: Icon(
+                    Icons.search,
+                    color: Colors.white,
+                  ),
                 ),
-                SizedBox(height: mqh * 0.140),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    Container(
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(35),
-                          color: Colors.yellow),
-                      width: mqw * 0.42,
-                      height: mqh * 0.22,
-                      child: Icon(FontAwesomeIcons.music, size: 50),
+              ),
+              SizedBox(height: mqh * 0.04),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text('BollyWood Artists',
+                      style: TextStyle(
+                          fontSize: 22,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white)),
+                  Text(
+                    'see all >',
+                    style: TextStyle(fontSize: 15, color: Colors.white54),
+                  )
+                ],
+              ),
+              SizedBox(height: mqh * 0.02),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Stack(
+                    children: [
+                      Container(
+                        margin: EdgeInsets.only(top: 20),
+                        width: mqw * 0.3,
+                        height: mqh * 0.130,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(15),
+                          color: Colors.white24,
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(left: 8),
+                        child: Align(
+                          child: Icon(
+                            FontAwesomeIcons.userAstronaut,
+                            color: Colors.purple,
+                            size: 100,
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
+                  Stack(
+                    children: [
+                      Container(
+                        margin: EdgeInsets.only(top: 20),
+                        width: mqw * 0.3,
+                        height: mqh * 0.130,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(15),
+                          color: Colors.white24,
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(left: 8),
+                        child: Align(
+                          child: Icon(
+                            FontAwesomeIcons.userAstronaut,
+                            color: Colors.pink,
+                            size: 100,
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
+                  Stack(
+                    children: [
+                      Container(
+                        margin: EdgeInsets.only(top: 20),
+                        width: mqw * 0.3,
+                        height: mqh * 0.130,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(15),
+                          color: Colors.white24,
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(left: 8),
+                        child: Align(
+                          child: Icon(
+                            FontAwesomeIcons.userAstronaut,
+                            color: Colors.orange,
+                            size: 100,
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
+                ],
+              ),
+              SizedBox(height: mqh * 0.04),
+              Text('HollyWood Artists',
+                  style: TextStyle(
+                      fontSize: 22,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white)),
+              SizedBox(height: mqh * 0.02),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Stack(
+                    children: [
+                      Container(
+                        margin: EdgeInsets.only(top: 20),
+                        width: mqw * 0.3,
+                        height: mqh * 0.130,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(15),
+                          color: Colors.white24,
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(left: 8),
+                        child: Align(
+                          child: Icon(
+                            FontAwesomeIcons.userAstronaut,
+                            color: Colors.red,
+                            size: 100,
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
+                  Stack(
+                    children: [
+                      Container(
+                        margin: EdgeInsets.only(top: 20),
+                        width: mqw * 0.3,
+                        height: mqh * 0.130,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(15),
+                          color: Colors.white24,
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(left: 8),
+                        child: Align(
+                          child: Icon(
+                            FontAwesomeIcons.userAstronaut,
+                            color: Colors.yellow,
+                            size: 100,
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
+                  Stack(
+                    children: [
+                      Container(
+                        margin: EdgeInsets.only(top: 20),
+                        width: mqw * 0.3,
+                        height: mqh * 0.130,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(15),
+                          color: Colors.white24,
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(left: 8),
+                        child: Align(
+                          child: Icon(
+                            FontAwesomeIcons.userAstronaut,
+                            color: Colors.deepPurple,
+                            size: 100,
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
+                ],
+              ),
+              SizedBox(height: mqh * 0.03),
+              Text(
+                'Mood',
+                style: TextStyle(
+                    fontSize: 22,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white),
+              ),
+              SizedBox(height: mqh * 0.03),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Container(
+                    width: mqw * 0.3,
+                    height: mqh * 0.130,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        color: Colors.white24),
+                    child: Icon(
+                      Icons.music_note,
+                      size: 40,
+                      color: Colors.white,
                     ),
-                    Container(
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(35),
-                          color: Colors.green),
-                      width: mqw * 0.42,
-                      height: mqh * 0.22,
-                      child: Icon(FontAwesomeIcons.music, size: 50),
+                  ),
+                  Container(
+                    width: mqw * 0.3,
+                    height: mqh * 0.130,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        color: Colors.white24),
+                    child: Icon(
+                      Icons.music_note,
+                      size: 40,
+                      color: Colors.white,
                     ),
-                  ],
-                ),
-                SizedBox(height: mqh * 0.140),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    Container(
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(35),
-                          color: Colors.orange),
-                      width: mqw * 0.42,
-                      height: mqh * 0.22,
-                      child: Icon(FontAwesomeIcons.music, size: 50),
+                  ),
+                  Container(
+                    width: mqw * 0.3,
+                    height: mqh * 0.130,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        color: Colors.white24),
+                    child: Icon(
+                      Icons.music_note,
+                      size: 40,
+                      color: Colors.white,
                     ),
-                    Container(
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(35),
-                          color: Colors.purple),
-                      width: mqw * 0.42,
-                      height: mqh * 0.22,
-                      child: Icon(FontAwesomeIcons.music, size: 50),
+                  ),
+                ],
+              ),
+              SizedBox(height: mqh * 0.03),
+              Text(
+                'Jump back in',
+                style: TextStyle(
+                    fontSize: 22,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white),
+              ),
+              SizedBox(height: mqh * 0.03),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Container(
+                    width: mqw * 0.3,
+                    height: mqh * 0.130,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        color: Colors.white24),
+                    child: Icon(
+                      Icons.music_note,
+                      size: 40,
+                      color: Colors.white,
                     ),
-                  ],
-                ),
-              ],
-            ),
+                  ),
+                  Container(
+                    width: mqw * 0.3,
+                    height: mqh * 0.130,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        color: Colors.white24),
+                    child: Icon(
+                      Icons.music_note,
+                      size: 40,
+                      color: Colors.white,
+                    ),
+                  ),
+                  Container(
+                    width: mqw * 0.3,
+                    height: mqh * 0.130,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        color: Colors.white24),
+                    child: Icon(
+                      Icons.music_note,
+                      size: 40,
+                      color: Colors.white,
+                    ),
+                  ),
+                ],
+              )
+            ],
           ),
         ),
       ),
