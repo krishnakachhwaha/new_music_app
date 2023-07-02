@@ -10,12 +10,18 @@ class library_pg extends StatefulWidget {
 class _library_pgState extends State<library_pg> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-          child: Text(
-        'hllllooooo',
-        style: TextStyle(fontSize: 30, color: Colors.white),
+    return Container(
+      decoration: BoxDecoration(
+          image: DecorationImage(
+        image: AssetImage('assets/images/download.jpeg'),
+        fit: BoxFit.cover,
       )),
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
+        appBar: AppBar(
+          title: const Text('data'),
+        ),
+      ),
     );
   }
 }

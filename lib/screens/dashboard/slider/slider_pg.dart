@@ -9,55 +9,37 @@ class slider_pg extends StatefulWidget {
 }
 
 class _slider_pgState extends State<slider_pg> {
-  List imageList = [
-    {
-      "id": 1,
-      "image_path":
-          'https://www.baldandbeards.com/wp-content/uploads/drake-haircut.jpg'
-    },
-    {
-      "id": 2,
-      "image_path":
-          'https://www.baldandbeards.com/wp-content/uploads/drake-haircut.jpg'
-    },
-    {
-      "id": 3,
-      "image_path":
-          'https://www.baldandbeards.com/wp-content/uploads/drake-haircut.jpg'
-    },
-  ];
-  final CarouselController carouselController = CarouselController();
-  int currentIndex = 0;
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Stack(
-        children: [
-          CarouselSlider(
-            items: imageList
-                .map(
-                  (item) => Image.network(
-                    item['image_path'],
-                    fit: BoxFit.cover,
-                    height: double.infinity,
-                    width: double.infinity,
-                  ),
-                )
-                .toList(),
-            carouselController: carouselController,
+    return ListView(
+      children: [
+        CarouselSlider(
+            items: [
+              Image.asset(
+                'assets/images/song1.jpeg',
+                fit: BoxFit.cover,
+              ),
+              Image.asset(
+                'assets/images/song2.jpeg',
+                fit: BoxFit.cover,
+              ),
+              Image.asset(
+                'assets/images/song3.jpeg',
+                fit: BoxFit.cover,
+              ),
+              Image.asset(
+                'assets/images/song4.jpeg',
+                fit: BoxFit.cover,
+              ),
+            ],
             options: CarouselOptions(
-                scrollPhysics: BouncingScrollPhysics(),
-                autoPlay: true,
-                aspectRatio: 2,
-                viewportFraction: 1,
-                onPageChanged: (index, reason) {
-                  setState(() {
-                    currentIndex = index;
-                  });
-                }),
-          )
-        ],
-      ),
+              height: 180,
+              autoPlay: true,
+              autoPlayCurve: Curves.easeInOut,
+              enlargeCenterPage: true,
+              autoPlayAnimationDuration: Duration(milliseconds: 500),
+            ))
+      ],
     );
   }
 }

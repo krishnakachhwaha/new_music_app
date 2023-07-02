@@ -128,12 +128,12 @@ class _play_pgState extends State<play_pg> {
                       color: Colors.white,
                       size: 25,
                     ),
-                    GestureDetector(
-                        onTap: () {},
-                        child: CircleAvatar(
-                          radius: 25,
-                          child: Icon(FontAwesomeIcons.play),
-                        )),
+                    InkWell(
+                      onTap: () {},
+                      child: CircleAvatar(
+                        child: Icon(FontAwesomeIcons.play),
+                      ),
+                    ),
                     Icon(
                       FontAwesomeIcons.forward,
                       color: Colors.white,
