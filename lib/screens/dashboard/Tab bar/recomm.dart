@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-class hiphop extends StatefulWidget {
-  const hiphop({Key? key}) : super(key: key);
+class recomm extends StatefulWidget {
+  const recomm({Key? key}) : super(key: key);
 
   @override
-  State<hiphop> createState() => _hiphopState();
+  State<recomm> createState() => _recommState();
 }
 
-class _hiphopState extends State<hiphop> {
+class _recommState extends State<recomm> {
   var arrNames = [
     {
       'arrTitleNames': 'Im Good [Blue]',

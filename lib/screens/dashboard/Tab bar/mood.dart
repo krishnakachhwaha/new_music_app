@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-class hiphop extends StatefulWidget {
-  const hiphop({Key? key}) : super(key: key);
+class mood extends StatefulWidget {
+  const mood({Key? key}) : super(key: key);
 
   @override
-  State<hiphop> createState() => _hiphopState();
+  State<mood> createState() => _moodState();
 }
 
-class _hiphopState extends State<hiphop> {
+class _moodState extends State<mood> {
   var arrNames = [
     {
       'arrTitleNames': 'Im Good [Blue]',

@@ -1,156 +1,163 @@
+import 'dart:ui';
+
+import 'package:flip_card/flip_card.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:music_app/conponents/arrData.dart';
+import 'package:music_app/screens/dashboard/Tab%20bar/popular.dart';
+
+import 'package:music_app/screens/play%20screen/player_controller.dart';
 
 class play_pg extends StatefulWidget {
-  const play_pg({Key? key}) : super(key: key);
+  String img;
+  String imgName;
+  play_pg({required this.img, required this.imgName});
 
   @override
   State<play_pg> createState() => _play_pgState();
 }
 
 class _play_pgState extends State<play_pg> {
-  double _currentValue = 0;
+  double sliderValue = 2;
+
   @override
   Widget build(BuildContext context) {
-    var mq = MediaQuery.of(context);
     final mqw = MediaQuery.of(context).size.width;
     final mqh = MediaQuery.of(context).size.height;
     return Scaffold(
-      backgroundColor: Colors.black,
-      body: SafeArea(
-        child: Container(
-          decoration: BoxDecoration(
-              gradient: LinearGradient(
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                  colors: [Colors.blue.shade200, Colors.blue.shade900])),
-          width: double.infinity,
-          height: double.infinity,
-          child: Padding(
-            padding: EdgeInsetsDirectional.only(
-                top: 10, start: 10, end: 10, bottom: 5),
+      body: Stack(
+        children: [
+          SizedBox.expand(
+            child: ImageFiltered(
+              imageFilter: ImageFilter.blur(sigmaX: 20, sigmaY: 20),
+              child: Image.asset(
+                'assets/images/download.jpg',
+                fit: BoxFit.fitHeight,
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 50),
             child: Column(
               children: [
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Icon(
-                      Icons.keyboard_arrow_down,
-                      color: Colors.white,
-                      size: 30,
-                    ),
-                    Text('Soft Pop Hits',
-                        style: TextStyle(fontSize: 20, color: Colors.white)),
-                    Icon(FontAwesomeIcons.ellipsisH, color: Colors.white)
+                    IconButton(
+                        onPressed: () {},
+                        icon: Icon(
+                          Icons.keyboard_arrow_down,
+                          color: Colors.white,
+                          size: 30,
+                        )),
                   ],
                 ),
-                SizedBox(height: mqh * 0.05),
-                Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15),
-                    color: Colors.indigo,
-                  ),
-                  width: mqw * 0.8,
-                  height: mqh * 0.4,
-                  child: Icon(FontAwesomeIcons.userAstronaut,
-                      color: Colors.white, size: 150),
+                FlipCard(
+                  front: musicNameNDImg(widget.img, widget.imgName),
+                  back: lyrics(),
                 ),
-                SizedBox(height: mqh * 0.04),
-                Text('Toylor Swift',
-                    style: TextStyle(fontSize: 25, color: Colors.white)),
-                SizedBox(height: mqh * 0.005),
-                Text('Blank Space',
-                    style: TextStyle(
-                        fontSize: 40,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white)),
-                SizedBox(height: mqh * 0.04),
+                SizedBox(height: mqh * 0.13),
                 Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      Icon(
-                        FontAwesomeIcons.heart,
-                        color: Colors.white,
-                        size: 20,
-                      ),
-                      Icon(
-                        FontAwesomeIcons.arrowDown,
-                        color: Colors.white,
-                        size: 20,
-                      ),
-                      Icon(
-                        FontAwesomeIcons.externalLink,
-                        color: Colors.white,
-                        size: 20,
-                      ),
-                      Icon(
-                        FontAwesomeIcons.tv,
-                        color: Colors.white,
-                        size: 20,
-                      ),
-                    ]),
-                SizedBox(height: mqh * 0.02),
-                Slider(
-                    min: 0,
-                    max: 10,
-                    divisions: 10,
-                    activeColor: Colors.purple,
-                    inactiveColor: Colors.purple.shade200,
-                    value: _currentValue,
-                    onChanged: (value) {
-                      setState(() {
-                        _currentValue = value;
-                      });
-                    }),
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    button_Controls(icon: FontAwesomeIcons.heart),
+                    button_Controls(icon: FontAwesomeIcons.repeat),
+                    button_Controls(icon: FontAwesomeIcons.shuffle),
+                    button_Controls(icon: Icons.lyrics_outlined),
+                  ],
+                ),
+                SizedBox(height: mqh * 0.01),
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     Text(
-                      _currentValue.toString(),
-                      style: TextStyle(fontSize: 18, color: Colors.white),
+                      '0.0',
+                      style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white),
+                    ),
+                    SliderTheme(
+                      data: SliderThemeData(
+                        trackHeight: 6,
+                      ),
+                      child: Slider(
+                        activeColor: Colors.purpleAccent,
+                        inactiveColor: Colors.purple.shade100,
+                        value: sliderValue,
+                        onChanged: (value) {
+                          setState(() {
+                            sliderValue = value;
+                          });
+                        },
+                        min: 0,
+                        max: 20,
+                      ),
                     ),
                     Text(
-                      _currentValue.toString(),
-                      style: TextStyle(fontSize: 18, color: Colors.white),
-                    )
+                      '0.0',
+                      style: TextStyle(
+                          fontSize: 18,
+                          //fontWeight: FontWeight.bold,
+                          color: Colors.white),
+                    ),
                   ],
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    Icon(
-                      FontAwesomeIcons.shuffle,
-                      color: Colors.white,
-                      size: 25,
-                    ),
-                    Icon(
-                      FontAwesomeIcons.backward,
-                      color: Colors.white,
-                      size: 25,
-                    ),
-                    InkWell(
-                      onTap: () {},
-                      child: CircleAvatar(
-                        child: Icon(FontAwesomeIcons.play),
-                      ),
-                    ),
-                    Icon(
-                      FontAwesomeIcons.forward,
-                      color: Colors.white,
-                      size: 25,
-                    ),
-                    Icon(
-                      FontAwesomeIcons.arrowsRotate,
-                      color: Colors.white,
-                      size: 25,
-                    )
+                    Controls(icon: FontAwesomeIcons.backwardStep),
+                    PlayPause_Control(),
+                    Controls(icon: FontAwesomeIcons.forwardStep)
                   ],
-                ),
+                )
               ],
             ),
           ),
-        ),
+        ],
       ),
     );
   }
+}
+
+Widget musicNameNDImg(String img, String imgName) {
+  return Container(
+    alignment: Alignment.topCenter,
+    width: 260,
+    height: 270,
+    decoration: BoxDecoration(
+      borderRadius: BorderRadius.circular(30),
+      color: Colors.white10,
+    ),
+    child: Column(
+      children: [
+        ClipRRect(
+          borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(30), topRight: Radius.circular(30)),
+          child: Image.asset(img, fit: BoxFit.fitWidth),
+        ),
+        SizedBox(height: 25),
+        Text(
+          imgName,
+          style: TextStyle(
+              fontSize: 25, color: Colors.white, fontWeight: FontWeight.bold),
+        ),
+      ],
+    ),
+  );
+}
+
+Widget lyrics() {
+  return Column(
+    children: [
+      Container(
+        alignment: Alignment.topCenter,
+        width: 300,
+        height: 270,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(30),
+          color: Colors.white10,
+        ),
+      )
+    ],
+  );
 }
