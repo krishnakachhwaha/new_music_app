@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:flip_card/flip_card.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:music_app/conponents/arrData.dart';
 import 'package:music_app/screens/dashboard/Tab%20bar/popular.dart';
@@ -22,8 +23,6 @@ class _play_pgState extends State<play_pg> {
 
   @override
   Widget build(BuildContext context) {
-    final mqw = MediaQuery.of(context).size.width;
-    final mqh = MediaQuery.of(context).size.height;
     return Scaffold(
       body: Stack(
         children: [
@@ -55,7 +54,7 @@ class _play_pgState extends State<play_pg> {
                   front: musicNameNDImg(widget.img, widget.imgName),
                   back: lyrics(),
                 ),
-                SizedBox(height: mqh * 0.13),
+                SizedBox(height: 75.h),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
@@ -65,7 +64,7 @@ class _play_pgState extends State<play_pg> {
                     button_Controls(icon: Icons.lyrics_outlined),
                   ],
                 ),
-                SizedBox(height: mqh * 0.01),
+                SizedBox(height: 18.h),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
@@ -95,10 +94,7 @@ class _play_pgState extends State<play_pg> {
                     ),
                     Text(
                       '0.0',
-                      style: TextStyle(
-                          fontSize: 18,
-                          //fontWeight: FontWeight.bold,
-                          color: Colors.white),
+                      style: TextStyle(fontSize: 18, color: Colors.white),
                     ),
                   ],
                 ),
@@ -122,8 +118,8 @@ class _play_pgState extends State<play_pg> {
 Widget musicNameNDImg(String img, String imgName) {
   return Container(
     alignment: Alignment.topCenter,
-    width: 260,
-    height: 270,
+    width: 260.w,
+    height: 240.h,
     decoration: BoxDecoration(
       borderRadius: BorderRadius.circular(30),
       color: Colors.white10,
@@ -135,7 +131,7 @@ Widget musicNameNDImg(String img, String imgName) {
               topLeft: Radius.circular(30), topRight: Radius.circular(30)),
           child: Image.asset(img, fit: BoxFit.fitWidth),
         ),
-        SizedBox(height: 25),
+        SizedBox(height: 30.h),
         Text(
           imgName,
           style: TextStyle(

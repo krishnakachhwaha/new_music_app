@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:lottie/lottie.dart';
+import 'package:music_app/screens/dashboard/bottomNavi/premium/prem_FamlyPlan.dart';
 import 'package:music_app/screens/dashboard/bottomNavi/premium/prem_NoAds.dart';
+import 'package:music_app/screens/dashboard/bottomNavi/premium/prem_StudPlan.dart';
+
+import '../../../../Bloc/theme_bloc.dart';
 
 class premium_pg extends StatefulWidget {
   const premium_pg({super.key});
@@ -13,15 +19,19 @@ class premium_pg extends StatefulWidget {
 class _premium_pgState extends State<premium_pg> {
   @override
   Widget build(BuildContext context) {
-    final mqh = MediaQuery.of(context).size.height;
-    final mqw = MediaQuery.of(context).size.width;
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: context.read<ThemeBloc>().state == ThemeMode.dark
+          ? Colors.black
+          : Colors.white,
       appBar: AppBar(
-        elevation: 20,
-        shadowColor: Colors.white38,
-        backgroundColor: Colors.black,
-        toolbarHeight: 100,
+        elevation: 15.sp,
+        shadowColor: context.read<ThemeBloc>().state == ThemeMode.dark
+            ? Colors.white
+            : Colors.black,
+        backgroundColor: context.read<ThemeBloc>().state == ThemeMode.dark
+            ? Colors.black
+            : Colors.white,
+        toolbarHeight: 90.h,
         leading: Container(
             decoration: BoxDecoration(
               shape: BoxShape.circle,
@@ -33,12 +43,12 @@ class _premium_pgState extends State<premium_pg> {
             child: Icon(
               FontAwesomeIcons.crown,
               color: Colors.yellow,
-              size: 20,
+              size: 18.sp,
               shadows: [
                 Shadow(
                     color: Colors.black54,
-                    offset: Offset(1.5, 4),
-                    blurRadius: 7)
+                    offset: Offset(1.5.sp, 4.sp),
+                    blurRadius: 7.sp)
               ],
             )),
         title: Row(
@@ -46,8 +56,10 @@ class _premium_pgState extends State<premium_pg> {
             RichText(
               text: TextSpan(
                   style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 23,
+                      color: context.read<ThemeBloc>().state == ThemeMode.dark
+                          ? Colors.white
+                          : Colors.black,
+                      fontSize: 20.sp,
                       fontStyle: FontStyle.italic),
                   children: <TextSpan>[
                     TextSpan(text: 'Go'),
@@ -55,7 +67,7 @@ class _premium_pgState extends State<premium_pg> {
                         text: ' Pro ',
                         style: TextStyle(
                             color: Colors.yellow,
-                            fontSize: 33,
+                            fontSize: 33.sp,
                             fontWeight: FontWeight.w900,
                             fontStyle: FontStyle.normal)),
                     TextSpan(text: 'and choose any plan\nyou like!'),
@@ -66,7 +78,7 @@ class _premium_pgState extends State<premium_pg> {
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.only(left: 10, right: 10, top: 50),
+          padding: EdgeInsets.only(left: 10.w, right: 10.w, top: 40.h),
           child: Column(
             children: [
               InkWell(
@@ -77,18 +89,23 @@ class _premium_pgState extends State<premium_pg> {
                 child: Container(
                   alignment: Alignment.topCenter,
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15),
-                    color: Colors.blueGrey.shade700,
+                    borderRadius: BorderRadius.circular(15.sp),
+                    color: context.read<ThemeBloc>().state == ThemeMode.dark
+                        ? Colors.blueGrey.shade700
+                        : Colors.blueGrey.shade300,
                   ),
                   width: double.infinity,
-                  height: mqh * 0.28,
+                  height: 220.h,
                   child: Column(
                     children: [
                       RichText(
                         text: TextSpan(
                             style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 20,
+                                color: context.read<ThemeBloc>().state ==
+                                        ThemeMode.dark
+                                    ? Colors.white
+                                    : Colors.black,
+                                fontSize: 20.sp,
                                 fontStyle: FontStyle.italic),
                             children: <TextSpan>[
                               TextSpan(text: 'Go'),
@@ -96,7 +113,7 @@ class _premium_pgState extends State<premium_pg> {
                                   text: ' Pro ',
                                   style: TextStyle(
                                       color: Colors.yellow,
-                                      fontSize: 33,
+                                      fontSize: 33.sp,
                                       fontWeight: FontWeight.w900,
                                       fontStyle: FontStyle.normal)),
                               TextSpan(text: '& See No Ads'),
@@ -104,12 +121,12 @@ class _premium_pgState extends State<premium_pg> {
                       ),
                       Lottie.network(
                           "https://lottie.host/46592b54-8fc9-45a2-88f9-602ea8f67d64/BC8qElS8P7.json",
-                          height: 179),
+                          height: 179.h),
                     ],
                   ),
                 ),
               ),
-              SizedBox(height: mqh * 0.05),
+              SizedBox(height: 12.h),
               InkWell(
                 onTap: () {
                   Navigator.push(
@@ -121,18 +138,23 @@ class _premium_pgState extends State<premium_pg> {
                 child: Container(
                   alignment: Alignment.topCenter,
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15),
-                    color: Colors.blueGrey.shade700,
+                    borderRadius: BorderRadius.circular(15.sp),
+                    color: context.read<ThemeBloc>().state == ThemeMode.dark
+                        ? Colors.blueGrey.shade700
+                        : Colors.blueGrey.shade300,
                   ),
                   width: double.infinity,
-                  height: mqh * 0.28,
+                  height: 220.h,
                   child: Column(
                     children: [
                       RichText(
                         text: TextSpan(
                             style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 20,
+                                color: context.read<ThemeBloc>().state ==
+                                        ThemeMode.dark
+                                    ? Colors.white
+                                    : Colors.black,
+                                fontSize: 20.sp,
                                 fontStyle: FontStyle.italic),
                             children: <TextSpan>[
                               TextSpan(text: 'Go'),
@@ -140,7 +162,7 @@ class _premium_pgState extends State<premium_pg> {
                                   text: ' Pro ',
                                   style: TextStyle(
                                       color: Colors.yellow,
-                                      fontSize: 33,
+                                      fontSize: 33.sp,
                                       fontWeight: FontWeight.w900,
                                       fontStyle: FontStyle.normal)),
                               TextSpan(text: '& Choose Student\'s Plan '),
@@ -148,13 +170,13 @@ class _premium_pgState extends State<premium_pg> {
                       ),
                       Lottie.network(
                         "https://lottie.host/291a4a51-1e61-456a-9e48-30dff26db22d/ysLifniNCZ.json",
-                        height: 179,
+                        height: 179.h,
                       ),
                     ],
                   ),
                 ),
               ),
-              SizedBox(height: mqh * 0.05),
+              SizedBox(height: 12.h),
               InkWell(
                 onTap: () {
                   Navigator.push(
@@ -166,18 +188,23 @@ class _premium_pgState extends State<premium_pg> {
                 child: Container(
                   alignment: Alignment.topCenter,
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15),
-                    color: Colors.blueGrey.shade700,
+                    borderRadius: BorderRadius.circular(15.sp),
+                    color: context.read<ThemeBloc>().state == ThemeMode.dark
+                        ? Colors.blueGrey.shade700
+                        : Colors.blueGrey.shade300,
                   ),
                   width: double.infinity,
-                  height: mqh * 0.28,
+                  height: 220.h,
                   child: Column(
                     children: [
                       RichText(
                         text: TextSpan(
                             style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 20,
+                                color: context.read<ThemeBloc>().state ==
+                                        ThemeMode.dark
+                                    ? Colors.white
+                                    : Colors.black,
+                                fontSize: 20.sp,
                                 fontStyle: FontStyle.italic),
                             children: <TextSpan>[
                               TextSpan(text: 'Go'),
@@ -185,16 +212,15 @@ class _premium_pgState extends State<premium_pg> {
                                   text: ' Pro ',
                                   style: TextStyle(
                                       color: Colors.yellow,
-                                      fontSize: 33,
+                                      fontSize: 33.sp,
                                       fontWeight: FontWeight.w900,
                                       fontStyle: FontStyle.normal)),
                               TextSpan(text: '& Choose Family Plan'),
                             ]),
                       ),
                       Lottie.network(
-                        "https://lottie.host/1e123fe9-7e0f-471c-9dc7-d158da73004a/oWbtCudjep.json",
-                        height: 179,
-                      ),
+                          "https://lottie.host/1e123fe9-7e0f-471c-9dc7-d158da73004a/oWbtCudjep.json",
+                          height: 179.h),
                     ],
                   ),
                 ),

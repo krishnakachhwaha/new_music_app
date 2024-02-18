@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:line_icons/line_icons.dart';
 import 'package:music_app/Bloc/theme_bloc.dart';
-import 'package:music_app/bloc/theme_events.dart';
 import 'package:music_app/screens/dashboard/drawer/personalData.dart';
-import 'package:music_app/screens/dashboard/drawer/setting_pg.dart';
+
+import '../../../bloc/theme_events.dart';
 
 class drawer_pg extends StatefulWidget {
   const drawer_pg({Key? key}) : super(key: key);
-
   @override
   State<drawer_pg> createState() => _drawer_pgState();
 }
@@ -17,156 +16,142 @@ class drawer_pg extends StatefulWidget {
 class _drawer_pgState extends State<drawer_pg> {
   @override
   Widget build(BuildContext context) {
-    final mqh = MediaQuery.of(context).size.height;
-    final mqw = MediaQuery.of(context).size.width;
+    List<Map<String, dynamic>> arrMap = [
+      {
+        'arrBoxcolor': Colors.yellow.shade100,
+        'arrIcon': FontAwesomeIcons.user,
+        'arrIconColor': Colors.yellow.shade700,
+        'arrtitle': 'Personal Data',
+      },
+      {
+        'arrBoxcolor': Colors.blue.shade100,
+        'arrIcon': Icons.settings,
+        'arrIconColor': Colors.blue.shade700,
+        'arrtitle': 'Setting'
+      },
+      {
+        'arrBoxcolor': Colors.green.shade100,
+        'arrIcon': FontAwesomeIcons.clock,
+        'arrIconColor': Colors.green.shade700,
+        'arrtitle': 'Purchase History'
+      },
+      {
+        'arrBoxcolor': Colors.orange.shade100,
+        'arrIcon': FontAwesomeIcons.questionCircle,
+        'arrIconColor': Colors.orange.shade700,
+        'arrtitle': 'Help & Support'
+      },
+      {
+        'arrBoxcolor': Colors.indigo.shade100,
+        'arrIcon': FontAwesomeIcons.signOut,
+        'arrIconColor': Colors.indigo.shade700,
+        'arrtitle': 'Logout',
+      },
+    ];
     return Scaffold(
         backgroundColor: context.read<ThemeBloc>().state == ThemeMode.dark
             ? Colors.grey.shade900
             : Colors.grey.shade200,
-        body: Column(
-          crossAxisAlignment: CrossAxisAlignment.end,
-          children: [
-            IconButton(
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-                icon: Icon(FontAwesomeIcons.x, color: Colors.white, size: 20)),
-            ListTileTheme(
-              textColor: Colors.white,
-              child: Column(
+        body: Padding(
+          padding: const EdgeInsets.only(left: 5, right: 5),
+          child: Column(
+            children: [
+              SizedBox(height: 40.h),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  SizedBox(height: mqh * 0.08),
-                  Row(
-                    children: [
-                      SizedBox(width: mqw * 0.035),
-                      CircleAvatar(
-                          radius: 25,
-                          child: Icon(
-                            FontAwesomeIcons.userAstronaut,
-                            size: 25,
-                          )),
-                      SizedBox(width: mqw * 0.035),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Krishna Kachhwaha',
-                            style: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          SizedBox(height: mqh * 0.003),
-                          Text(
-                            'krishnakac.....gmail.com',
-                            style: TextStyle(fontSize: 16),
-                          )
-                        ],
-                      )
-                    ],
-                  ),
-                  SizedBox(height: mqh * 0.005),
-                  Text(
-                    '_____________________________________________',
-                    style: TextStyle(color: Colors.grey.shade400),
-                  ),
-                  SizedBox(height: mqh * 0.02),
-                  ListTile(
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => personalData()));
-                    },
-                    leading: Container(
-                        width: mqw * 0.12,
-                        height: mqh * 0.06,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(15),
-                            color: Colors.yellow.shade50),
-                        child: Icon(LineIcons.user,
-                            color: Colors.yellow.shade700)),
-                    title: Text(
-                      'Personal data',
-                      style: TextStyle(
-                        fontWeight: FontWeight.w500,
-                        color: context.read<ThemeBloc>().state == ThemeMode.dark
-                            ? Colors.white
-                            : Colors.grey.shade900,
-                      ),
-                    ),
-                  ),
-                  ListTile(
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => setting_pg()));
-                    },
-                    leading: Container(
-                        width: mqw * 0.12,
-                        height: mqh * 0.06,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(15),
-                            color: Colors.blue.shade50),
-                        child: Icon(Icons.settings, color: Colors.blue)),
-                    title: Text(
-                      'Setting',
-                      style: TextStyle(
-                        fontWeight: FontWeight.w500,
-                        color: context.read<ThemeBloc>().state == ThemeMode.dark
-                            ? Colors.white
-                            : Colors.grey.shade900,
-                      ),
-                    ),
-                  ),
-                  ListTile(
-                    leading: Container(
-                        width: mqw * 0.12,
-                        height: mqh * 0.06,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(15),
-                            color: Colors.green.shade50),
-                        child: Icon(Icons.help_outline, color: Colors.green)),
-                    title: Text(
-                      'Help',
-                      style: TextStyle(
-                        fontWeight: FontWeight.w500,
-                        color: context.read<ThemeBloc>().state == ThemeMode.dark
-                            ? Colors.white
-                            : Colors.grey.shade900,
-                      ),
-                    ),
-                  ),
-                  ListTile(
-                      leading: Container(
-                          width: mqw * 0.12,
-                          height: mqh * 0.06,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(15),
-                              color: Colors.red.shade100),
-                          child: Icon(Icons.light_mode, color: Colors.red)),
-                      title: Text(
-                        'Theme',
-                        style: TextStyle(
-                          fontWeight: FontWeight.w500,
+                  IconButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      icon: Icon(FontAwesomeIcons.x,
                           color:
                               context.read<ThemeBloc>().state == ThemeMode.dark
                                   ? Colors.white
-                                  : Colors.grey.shade900,
-                        ),
-                      ),
-                      trailing: Switch(
-                        value:
-                            context.read<ThemeBloc>().state == ThemeMode.dark,
-                        onChanged: (value) {
-                          context.read<ThemeBloc>().add(ThemeChanged(value));
-                        },
-                      ))
+                                  : Colors.black,
+                          size: 20)),
                 ],
               ),
-            ),
-          ],
+              SizedBox(height: 15.h),
+              Row(
+                children: [
+                  CircleAvatar(
+                      radius: 25.sp,
+                      child: Icon(FontAwesomeIcons.userAstronaut, size: 25.sp)),
+                  SizedBox(width: 10.w),
+                  Column(
+                    children: [
+                      Text(
+                        'Krishna Kachhwaha',
+                        style: TextStyle(
+                          fontSize: 20.sp,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      SizedBox(height: 5.h),
+                      Text(
+                        'krishnakac.....gmail.com',
+                        style: TextStyle(fontSize: 16.sp),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+              SizedBox(height: 10.h),
+              Text(
+                '____________________________________________________',
+                style: TextStyle(color: Colors.grey.shade500),
+              ),
+              Expanded(
+                  child: ListView.builder(
+                itemCount: arrMap.length,
+                itemBuilder: (context, index) {
+                  return ListTile(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => arrMap[index]['onTap']));
+                    },
+                    leading: Container(
+                      width: 40.w,
+                      height: 40.h,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(12),
+                        color: arrMap[index]['arrBoxcolor'],
+                      ),
+                      child: Icon(arrMap[index]['arrIcon'],
+                          color: arrMap[index]['arrIconColor'], size: 20.sp),
+                    ),
+                    title: Text(
+                      '${arrMap[index]['arrtitle']}',
+                      style: TextStyle(fontSize: 16),
+                    ),
+                  );
+                },
+              )),
+              ListTile(
+                  leading: Container(
+                    width: 40.w,
+                    height: 40.h,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(12),
+                        color: Colors.red.shade100),
+                    child: Icon(FontAwesomeIcons.sun,
+                        color: Colors.red.shade700, size: 20.sp),
+                  ),
+                  title: Text(
+                    'Day Mode',
+                    style: TextStyle(fontSize: 15),
+                  ),
+                  trailing: Switch(
+                    value: context.read<ThemeBloc>().state == ThemeMode.dark,
+                    onChanged: (value) {
+                      context.read<ThemeBloc>().add(ThemeChanged(value));
+                    },
+                  ))
+            ],
+          ),
         ));
   }
 }

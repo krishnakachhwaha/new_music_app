@@ -1,17 +1,29 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lottie/lottie.dart';
 import 'package:music_app/screens/dashboard/bottomNavi/home/home_screen.dart';
+import '../../Bloc/theme_bloc.dart';
+import '../../themeData/app_theme_data.dart';
 
-void main() => runApp(ScreenUtilInit(builder: (context, child) {
-      return MaterialApp(
-          debugShowCheckedModeBanner: false,
-          title: 'GNav',
-          theme: ThemeData(
-            primaryColor: Colors.grey[800],
-          ),
-          home: onboarding());
-    }));
+void main() {
+  runApp(BlocProvider(
+    create: (context) => ThemeBloc(),
+    child: ScreenUtilInit(builder: (context, child) {
+      return BlocBuilder<ThemeBloc, ThemeMode>(
+        builder: (context, state) {
+          return MaterialApp(
+              debugShowCheckedModeBanner: false,
+              title: 'GNav',
+              theme: lightTheme,
+              themeMode: state,
+              darkTheme: darkTheme,
+              home: onboarding());
+        },
+      );
+    }),
+  ));
+}
 
 class onboarding extends StatefulWidget {
   const onboarding({super.key});
@@ -35,12 +47,13 @@ class _onboardingState extends State<onboarding> {
           '       More than 1500 artist to\nidentify themselves and create\n                their palylists'
     },
     {
-      "image": 'assets/lottie/onboardig3.json',
+      "image": 'assets/lottie/onboarding3.json',
       "title": 'Let heartbeat start\'s',
       "description": 'Wish you all the best and\n            just go to it!'
     },
   ];
   PageController pageController = PageController();
+
   continueMethod() {
     Navigator.pushReplacement(
         context, MaterialPageRoute(builder: (context) => Example()));
@@ -65,7 +78,10 @@ class _onboardingState extends State<onboarding> {
               onPressed: continueMethod,
               child: Text(
                 'Skip',
-                style: TextStyle(color: Colors.black),
+                style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 15.sp,
+                    fontWeight: FontWeight.bold),
               ))
         ],
       ),
@@ -105,7 +121,7 @@ class _onboardingState extends State<onboarding> {
                 (currentPage == (onboardingData.length - 1))
                     ? ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.teal.shade300,
+                            backgroundColor: Colors.deepPurple,
                             shape: RoundedRectangleBorder()),
                         onPressed: continueMethod,
                         child: const Text(

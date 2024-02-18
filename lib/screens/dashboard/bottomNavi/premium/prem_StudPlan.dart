@@ -3,17 +3,19 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:lottie/lottie.dart';
+
 import '../../../../Bloc/theme_bloc.dart';
 import '../../../../widgets/BottomSheets/PymentBottomSheet.dart';
 
-class prem_NoAds extends StatefulWidget {
-  const prem_NoAds({Key? key}) : super(key: key);
+class prem_StudPLan extends StatefulWidget {
+  const prem_StudPLan({super.key});
 
   @override
-  State<prem_NoAds> createState() => _prem_NoAdsState();
+  State<prem_StudPLan> createState() => _prem_StudPLanState();
 }
 
-class _prem_NoAdsState extends State<prem_NoAds> {
+class _prem_StudPLanState extends State<prem_StudPLan> {
+  @override
   var arrMonthly = [
     '1 Month',
     '3 Month',
@@ -26,7 +28,6 @@ class _prem_NoAdsState extends State<prem_NoAds> {
     '₹399/- only',
     '₹599/- only',
   ];
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: context.read<ThemeBloc>().state == ThemeMode.dark
@@ -77,11 +78,11 @@ class _prem_NoAdsState extends State<prem_NoAds> {
                                   fontSize: 33.sp,
                                   fontWeight: FontWeight.w900,
                                   fontStyle: FontStyle.normal)),
-                          TextSpan(text: '& See No Ads'),
+                          TextSpan(text: '& Choose Student\'s Plan'),
                         ]),
                   ),
                   Lottie.network(
-                    "https://lottie.host/46592b54-8fc9-45a2-88f9-602ea8f67d64/BC8qElS8P7.json",
+                    "https://lottie.host/291a4a51-1e61-456a-9e48-30dff26db22d/ysLifniNCZ.json",
                     height: 179.h,
                   ),
                 ],
@@ -97,11 +98,11 @@ class _prem_NoAdsState extends State<prem_NoAds> {
                       width: double.infinity,
                       height: 60.h,
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(15.sp),
-                        color: context.read<ThemeBloc>().state == ThemeMode.dark
-                            ? Colors.blueGrey.shade700
-                            : Colors.blueGrey.shade300,
-                      ),
+                          borderRadius: BorderRadius.circular(15.sp),
+                          color:
+                              context.read<ThemeBloc>().state == ThemeMode.dark
+                                  ? Colors.blueGrey.shade700
+                                  : Colors.blueGrey.shade300),
                       child: ListTile(
                           title: Text(
                             arrMonthly[index],
@@ -125,7 +126,7 @@ class _prem_NoAdsState extends State<prem_NoAds> {
                                 backgroundColor:
                                     context.read<ThemeBloc>().state ==
                                             ThemeMode.dark
-                                        ? Colors.grey.shade900
+                                        ? Colors.black
                                         : Colors.grey.shade300,
                                 shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.only(
@@ -136,7 +137,7 @@ class _prem_NoAdsState extends State<prem_NoAds> {
                                 context: context,
                                 builder: (context) {
                                   return SizedBox(
-                                      height: 130.h,
+                                      height: 140.h,
                                       child: PymentBottomSheet());
                                 },
                               );

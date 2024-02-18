@@ -1,9 +1,12 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:line_icons/line_icons.dart';
+import 'package:music_app/screens/play%20screen/play_pg.dart';
+import 'package:music_app/widgets/usefull_icon_button/playButton.dart';
+import '../../../../Bloc/theme_bloc.dart';
+import '../../../../conponents/arrData.dart';
 
 class LikedSongs_pg extends StatefulWidget {
   const LikedSongs_pg({super.key});
@@ -16,8 +19,11 @@ class _LikedSongs_pgState extends State<LikedSongs_pg> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: context.read<ThemeBloc>().state == ThemeMode.dark
+          ? Colors.black
+          : Colors.white,
       appBar: AppBar(
+          leading: Container(),
           toolbarHeight: 220.h,
           flexibleSpace: Stack(
             children: [
@@ -67,33 +73,45 @@ class _LikedSongs_pgState extends State<LikedSongs_pg> {
             ],
           )),
       body: Padding(
-        padding: EdgeInsets.only(right: 5.sp, left: 5.sp),
+        padding: EdgeInsets.only(right: 5.h, left: 5.h),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SizedBox(height: 10.h),
             Text('10\nliked songs',
-                style: TextStyle(fontSize: 20.sp, color: Colors.white70)),
+                style: TextStyle(
+                  fontSize: 18.sp,
+                  fontWeight: FontWeight.w500,
+                  color: context.read<ThemeBloc>().state == ThemeMode.dark
+                      ? Colors.white
+                      : Colors.black,
+                )),
             SizedBox(height: 10.h),
             Container(
               height: 45.h,
               width: 130.w,
               decoration: BoxDecoration(
-                  color: Colors.grey.shade900,
+                  color: context.read<ThemeBloc>().state == ThemeMode.dark
+                      ? Colors.grey.shade900
+                      : Colors.black12,
                   borderRadius: BorderRadius.circular(10.sp)),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Icon(
                     FontAwesomeIcons.add,
-                    color: Colors.white,
+                    color: context.read<ThemeBloc>().state == ThemeMode.dark
+                        ? Colors.white
+                        : Colors.black,
                   ),
                   Text(
                     'ADD SONG',
                     style: TextStyle(
                         fontSize: 15.sp,
                         fontWeight: FontWeight.bold,
-                        color: Colors.white),
+                        color: context.read<ThemeBloc>().state == ThemeMode.dark
+                            ? Colors.white
+                            : Colors.black),
                   )
                 ],
               ),
@@ -119,35 +137,65 @@ class _LikedSongs_pgState extends State<LikedSongs_pg> {
                     ]),
                     child: Container(
                         decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(15.sp),
-                            color: Colors.grey.shade900),
+                          borderRadius: BorderRadius.circular(15.sp),
+                          color:
+                              context.read<ThemeBloc>().state == ThemeMode.dark
+                                  ? Colors.grey.shade900
+                                  : Colors.black12,
+                        ),
                         height: 60.h,
-                        child: ListTile(
-                          leading: Image.asset('assets/images/song1.jpeg',
-                              height: 33.h),
-                          title: Text(
-                            'Song name',
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold),
-                          ),
-                          subtitle: Text(
-                            'Artist name',
-                            style: TextStyle(color: Colors.white70),
-                          ),
-                          trailing: IconButton(
-                            onPressed: () {
-                              showModalBottomSheet(
-                                barrierColor: Colors.white24,
-                                backgroundColor: Colors.black,
-                                context: context,
-                                builder: (context) {
-                                  return Center(child: Column());
-                                },
-                              );
-                            },
-                            icon: Icon(FontAwesomeIcons.ellipsisVertical,
-                                color: Colors.white, size: 18.sp),
+                        child: GestureDetector(
+                          onTap: () {
+                            String img =
+                                Data.arrNames[index]['arrImgNames'].toString();
+                            String imgName =
+                                Data.arrNames[index]['arrTitleNames'];
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => play_pg(
+                                          img: img,
+                                          imgName: imgName,
+                                        )));
+                          },
+                          child: ListTile(
+                            leading: Image.asset('assets/images/song1.jpeg',
+                                height: 33.h),
+                            title: Text(
+                              'Song name',
+                              style: TextStyle(
+                                  color: context.read<ThemeBloc>().state ==
+                                          ThemeMode.dark
+                                      ? Colors.white
+                                      : Colors.black,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                            subtitle: Text(
+                              'Artist name',
+                              style: TextStyle(
+                                  color: context.read<ThemeBloc>().state ==
+                                          ThemeMode.dark
+                                      ? Colors.white70
+                                      : Colors.black87),
+                            ),
+                            trailing: IconButton(
+                              onPressed: () {
+                                showModalBottomSheet(
+                                  barrierColor: Colors.white24,
+                                  backgroundColor: Colors.black,
+                                  context: context,
+                                  builder: (context) {
+                                    return Center(child: Column());
+                                  },
+                                );
+                              },
+                              icon: Icon(FontAwesomeIcons.ellipsisVertical,
+                                  color: context.read<ThemeBloc>().state ==
+                                          ThemeMode.dark
+                                      ? Colors.white
+                                      : Colors.black,
+                                  size: 18.sp),
+                            ),
                           ),
                         )),
                   ),
@@ -158,14 +206,11 @@ class _LikedSongs_pgState extends State<LikedSongs_pg> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-          onPressed: () {},
-          shape: CircleBorder(),
-          backgroundColor: Colors.purple.shade400,
-          child: Icon(
-            FontAwesomeIcons.play,
-            size: 17.sp,
-            color: Colors.white,
-          )),
+        onPressed: () {},
+        child: PlyPauseButton(),
+        shape: CircleBorder(),
+        backgroundColor: Colors.purple.shade400,
+      ),
       floatingActionButtonLocation: FloatingActionButtonLocation.endTop,
     );
   }

@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:music_app/widgets/usefull_icon_button/staggered.dart';
+
+import '../../../../Bloc/theme_bloc.dart';
 
 class search_pg extends StatefulWidget {
   const search_pg({Key? key}) : super(key: key);
@@ -14,113 +18,118 @@ class _search_pgState extends State<search_pg> {
   Widget build(BuildContext context) {
     TextEditingController controller = TextEditingController();
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: context.read<ThemeBloc>().state == ThemeMode.dark
+          ? Colors.black
+          : Colors.white,
       body: Padding(
-        padding: const EdgeInsetsDirectional.only(start: 10, end: 10, top: 55),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              'Welcome Back',
-              style: TextStyle(fontSize: 35.sp, color: Colors.white),
-            ),
-            Text(
-              'what would you like to listen today?',
-              style: TextStyle(fontSize: 18.sp, color: Colors.white70),
-            ),
-            SizedBox(height: 18.h),
-            TextField(
-              cursorColor: Colors.white,
-              decoration: InputDecoration(
-                  hintText: 'song request',
-                  hintStyle: TextStyle(color: Colors.white),
-                  enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(17.sp),
-                      borderSide: BorderSide(color: Colors.white70)),
-                  iconColor: Colors.white,
-                  prefix: Icon(
-                    FontAwesomeIcons.search,
-                    color: Colors.white,
-                    size: 20.sp,
-                  ),
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(17.sp),
-                      borderSide: BorderSide(color: Colors.white))),
-            ),
-            SizedBox(height: 25.h),
-            Text('Recently played',
-                style: TextStyle(fontSize: 25.sp, color: Colors.white)),
-            Expanded(
-                child: ListView.builder(
-              scrollDirection: Axis.horizontal,
-              itemCount: 10,
-              itemBuilder: (context, index) => Padding(
-                padding: const EdgeInsets.all(8),
-                child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10.sp),
-                    color: Colors.white,
-                  ),
-                  width: 120.w,
-                  height: 180.h,
-                ),
+        padding: const EdgeInsets.only(left: 10, right: 10, top: 70),
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'Welcome Back',
+                style: TextStyle(fontSize: 35.sp),
               ),
-            )),
-            Text('Most searched songs',
-                style: TextStyle(fontSize: 25.sp, color: Colors.white)),
-            Expanded(
-                child: ListView.builder(
-              scrollDirection: Axis.horizontal,
-              itemCount: 10,
-              itemBuilder: (context, index) => Padding(
-                padding: const EdgeInsets.all(8),
-                child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10.sp),
-                    color: Colors.white,
-                  ),
-                  width: 120.w,
-                  height: 180.h,
-                ),
+              Text(
+                'what would you like to listen today?',
+                style: TextStyle(fontSize: 18.sp),
               ),
-            )),
-            Text('Artists',
-                style: TextStyle(fontSize: 25.sp, color: Colors.white)),
-            Expanded(
-                child: ListView.builder(
-              scrollDirection: Axis.horizontal,
-              itemCount: 10,
-              itemBuilder: (context, index) => Padding(
-                padding: const EdgeInsets.all(0),
-                child: Container(
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: Colors.white,
-                  ),
-                  width: 120.w,
-                  height: 180.h,
-                ),
+              SizedBox(height: 18.h),
+              TextField(
+                decoration: InputDecoration(
+                    hintText: 'Song Request',
+                    enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(17.sp),
+                        borderSide: BorderSide(
+                          color:
+                              context.read<ThemeBloc>().state == ThemeMode.dark
+                                  ? Colors.white
+                                  : Colors.black,
+                        )),
+                    prefixIcon: Icon(
+                      FontAwesomeIcons.search,
+                      size: 20.sp,
+                    ),
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(17.sp),
+                        borderSide: BorderSide(
+                          color:
+                              context.read<ThemeBloc>().state == ThemeMode.dark
+                                  ? Colors.white
+                                  : Colors.black,
+                        ))),
               ),
-            )),
-            Text('Playlists for you',
-                style: TextStyle(fontSize: 25.sp, color: Colors.white)),
-            Expanded(
-                child: ListView.builder(
-              scrollDirection: Axis.horizontal,
-              itemCount: 10,
-              itemBuilder: (context, index) => Padding(
-                padding: const EdgeInsets.all(8),
-                child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10.sp),
-                    color: Colors.white,
-                  ),
-                  width: 120.w,
-                  height: 180.h,
-                ),
-              ),
-            )),
-          ],
+              SizedBox(height: 30.h),
+              Text('Recently played', style: TextStyle(fontSize: 23.sp)),
+              SizedBox(
+                  height: 110,
+                  child: ListView.builder(
+                    shrinkWrap: true,
+                    scrollDirection: Axis.horizontal,
+                    itemCount: 10,
+                    itemBuilder: (context, index) => Padding(
+                      padding: const EdgeInsets.all(8),
+                      child: Container(
+                        width: 90.w,
+                        decoration: BoxDecoration(
+                          color:
+                              context.read<ThemeBloc>().state == ThemeMode.dark
+                                  ? Colors.white
+                                  : Colors.black,
+                          borderRadius: BorderRadius.circular(10.sp),
+                        ),
+                      ),
+                    ),
+                  )),
+              Text('Most searched songs', style: TextStyle(fontSize: 23.sp)),
+              SizedBox(
+                  height: 110,
+                  child: ListView.builder(
+                    shrinkWrap: true,
+                    scrollDirection: Axis.horizontal,
+                    itemCount: 10,
+                    itemBuilder: (context, index) => Padding(
+                      padding: const EdgeInsets.all(8),
+                      child: Container(
+                        width: 90.w,
+                        decoration: BoxDecoration(
+                          color:
+                              context.read<ThemeBloc>().state == ThemeMode.dark
+                                  ? Colors.white
+                                  : Colors.black,
+                          borderRadius: BorderRadius.circular(10.sp),
+                        ),
+                      ),
+                    ),
+                  )),
+              Text('Artists', style: TextStyle(fontSize: 23.sp)),
+              SizedBox(
+                  height: 90,
+                  child: ListView.builder(
+                    shrinkWrap: true,
+                    scrollDirection: Axis.horizontal,
+                    itemCount: 10,
+                    itemBuilder: (context, index) => Padding(
+                      padding: const EdgeInsets.all(5),
+                      child: Container(
+                        width: 70.w,
+                        decoration: BoxDecoration(
+                          color:
+                              context.read<ThemeBloc>().state == ThemeMode.dark
+                                  ? Colors.white
+                                  : Colors.black,
+                          shape: BoxShape.circle,
+                        ),
+                      ),
+                    ),
+                  )),
+              // Text('Playlists for you',
+              //     style: TextStyle(fontSize: 25.sp, color: Colors.white)),
+              SizedBox(height: 25.h),
+              staggered(),
+            ],
+          ),
         ),
       ),
     );

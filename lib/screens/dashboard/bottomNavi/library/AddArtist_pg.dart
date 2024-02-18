@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import '../../../../Bloc/theme_bloc.dart';
+import '../../../../widgets/usefull_icon_button/staggered.dart';
 
 class AddArtist extends StatelessWidget {
   const AddArtist({Key? key}) : super(key: key);
@@ -8,25 +12,43 @@ class AddArtist extends StatelessWidget {
     return DefaultTabController(
       length: 7,
       child: Scaffold(
-        backgroundColor: Colors.black,
+        backgroundColor: context.read<ThemeBloc>().state == ThemeMode.dark
+            ? Colors.black
+            : Colors.white,
         appBar: AppBar(
-          title: Text('Best For You'),
-          backgroundColor: Colors.grey.shade700,
+          backgroundColor: context.read<ThemeBloc>().state == ThemeMode.dark
+              ? Colors.grey.shade800
+              : Colors.black12,
           bottom: TabBar(
+              labelStyle:
+                  TextStyle(fontWeight: FontWeight.bold, letterSpacing: 1),
+              unselectedLabelStyle:
+                  TextStyle(fontWeight: FontWeight.normal, letterSpacing: 0),
+              labelColor: context.read<ThemeBloc>().state == ThemeMode.dark
+                  ? Colors.white
+                  : Colors.black,
+              indicatorColor: context.read<ThemeBloc>().state == ThemeMode.dark
+                  ? Colors.white
+                  : Colors.black,
+              indicatorSize: TabBarIndicatorSize.tab,
+              indicatorWeight: 5.sp,
               isScrollable: true,
-              unselectedLabelColor: Colors.grey.shade400,
+              unselectedLabelColor:
+                  context.read<ThemeBloc>().state == ThemeMode.dark
+                      ? Colors.white
+                      : Colors.black87,
               tabs: [
-                Tab(text: 'hindi'),
-                Tab(text: 'english'),
-                Tab(text: 'marathi'),
-                Tab(text: 'bhojpuri'),
-                Tab(text: 'tamil'),
-                Tab(text: 'punjabi'),
-                Tab(text: 'telugu'),
+                Tab(text: 'Hindi'),
+                Tab(text: 'English'),
+                Tab(text: 'Marathi'),
+                Tab(text: 'Bhojpuri'),
+                Tab(text: 'Tamil'),
+                Tab(text: 'Punjabi'),
+                Tab(text: 'Telugu'),
               ]),
         ),
         body: Padding(
-          padding: const EdgeInsets.only(right: 10, left: 10),
+          padding: const EdgeInsets.only(right: 5, left: 5),
           child: Column(
             children: [
               Expanded(
@@ -53,15 +75,7 @@ class hindi extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: ListView.builder(
-        itemCount: 10,
-        itemBuilder: (context, index) => CircleAvatar(
-          backgroundColor: Colors.white,
-          radius: 40,
-        ),
-      ),
-    );
+    return staggeredAnimation();
   }
 }
 
@@ -70,7 +84,7 @@ class english extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return staggeredAnimation();
   }
 }
 
@@ -79,7 +93,7 @@ class marathi extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return staggeredAnimation();
   }
 }
 
@@ -88,7 +102,7 @@ class bhojpuri extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return staggeredAnimation();
   }
 }
 
@@ -97,7 +111,7 @@ class tamil extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return staggeredAnimation();
   }
 }
 
@@ -106,7 +120,7 @@ class punjabi extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return staggeredAnimation();
   }
 }
 
@@ -115,6 +129,6 @@ class telugu extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return staggeredAnimation();
   }
 }

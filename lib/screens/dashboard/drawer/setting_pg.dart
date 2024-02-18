@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:line_icons/line_icon.dart';
 import 'package:line_icons/line_icons.dart';
@@ -14,8 +15,6 @@ class setting_pg extends StatefulWidget {
 class _setting_pgState extends State<setting_pg> {
   @override
   Widget build(BuildContext context) {
-    final mqh = MediaQuery.of(context).size.height;
-    final mqw = MediaQuery.of(context).size.width;
     return Scaffold(
       backgroundColor: Colors.black,
       body: Padding(
@@ -23,41 +22,41 @@ class _setting_pgState extends State<setting_pg> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(height: mqh * 0.05),
+            SizedBox(height: 40.h),
             BackButton(
               color: Colors.white,
             ),
-            Text(
-              '_______________________________________________________________________________________________________________________________________________________',
-              style: TextStyle(fontSize: 5, color: Colors.grey),
-            ),
-            SizedBox(height: mqh * 0.02),
+            // Text(
+            //   '__________________________________________________________________________',
+            //   style: TextStyle(fontSize: 10.sp, color: Colors.grey),
+            // ),
+            SizedBox(height: 10.h),
             Text(
               'Setting',
-              style: TextStyle(fontSize: 30, color: Colors.white),
+              style: TextStyle(fontSize: 30.sp, color: Colors.white),
             ),
-            SizedBox(height: mqh * 0.04),
+            SizedBox(height: 20.h),
             Row(
               children: [
                 Icon(
                   FontAwesomeIcons.user,
-                  size: 20,
+                  size: 20.sp,
                   color: Colors.purpleAccent,
                 ),
-                SizedBox(width: mqw * 0.02),
+                SizedBox(width: 10.w),
                 Text(
                   'Account',
                   style: TextStyle(
-                      fontSize: 20,
+                      fontSize: 20.sp,
                       fontWeight: FontWeight.w900,
                       color: Colors.white),
                 ),
               ],
             ),
-            SizedBox(height: mqh * 0.01),
+            SizedBox(height: 5.h),
             Text(
               '_________________________________________________________________________________________________________________________________________________________________________',
-              style: TextStyle(fontSize: 5, color: Colors.grey.shade400),
+              style: TextStyle(fontSize: 5.sp, color: Colors.grey.shade400),
             ),
             ListTileTheme(
               iconColor: Colors.white70,
@@ -68,77 +67,78 @@ class _setting_pgState extends State<setting_pg> {
                     onTap: () {},
                     leading: Text(
                       'Content settings',
-                      style: TextStyle(fontSize: 18),
+                      style: TextStyle(fontSize: 18.sp),
                     ),
                     trailing: Icon(
                       Icons.arrow_forward_ios,
-                      size: 15,
+                      size: 15.sp,
                     ),
                   ),
                   ListTile(
                     onTap: () {},
                     leading: Text(
                       'Social',
-                      style: TextStyle(fontSize: 18),
+                      style: TextStyle(fontSize: 18.sp),
                     ),
                     trailing: Icon(
                       Icons.arrow_forward_ios,
-                      size: 15,
+                      size: 15.sp,
                     ),
                   ),
                   ListTile(
                     onTap: () {},
                     leading: Text(
                       'Language',
-                      style: TextStyle(fontSize: 18),
+                      style: TextStyle(fontSize: 18.sp),
                     ),
                     trailing: Icon(
                       Icons.arrow_forward_ios,
-                      size: 15,
+                      size: 15.sp,
                     ),
                   ),
                   ListTile(
                     onTap: () {},
                     leading: Text(
                       'Privacy and security',
-                      style: TextStyle(fontSize: 18),
+                      style: TextStyle(fontSize: 18.sp),
                     ),
                     trailing: Icon(
                       Icons.arrow_forward_ios,
-                      size: 15,
+                      size: 15.sp,
                     ),
                   ),
-                  SizedBox(height: mqh * 0.04),
+                  SizedBox(height: 15.h),
                   Row(
                     children: [
                       Icon(
                         FontAwesomeIcons.volumeHigh,
-                        size: 20,
+                        size: 20.sp,
                         color: Colors.purpleAccent,
                       ),
-                      SizedBox(width: mqw * 0.03),
+                      SizedBox(width: 15.w),
                       Text(
                         'Notification',
                         style: TextStyle(
-                            fontSize: 20,
+                            fontSize: 20.sp,
                             fontWeight: FontWeight.w900,
                             color: Colors.white),
                       ),
                     ],
                   ),
-                  SizedBox(height: mqh * 0.01),
+                  SizedBox(height: 5.h),
                   Text(
-                    '_________________________________________________________________________________________________________________________________________________________________________',
-                    style: TextStyle(fontSize: 5, color: Colors.grey.shade400),
+                    '__________________________________________________________________________',
+                    style:
+                        TextStyle(fontSize: 10.sp, color: Colors.grey.shade400),
                   ),
                   ListTile(
                     onTap: () {},
                     leading: Text(
                       'News for you',
-                      style: TextStyle(fontSize: 18),
+                      style: TextStyle(fontSize: 18.sp),
                     ),
                     trailing: Transform.scale(
-                      scale: 0.8,
+                      scale: 0.8.sp,
                       child: CupertinoSwitch(
                           activeColor: Colors.purpleAccent,
                           value: true,
@@ -149,10 +149,10 @@ class _setting_pgState extends State<setting_pg> {
                     onTap: () {},
                     leading: Text(
                       'Account activiy',
-                      style: TextStyle(fontSize: 18),
+                      style: TextStyle(fontSize: 18.sp),
                     ),
                     trailing: Transform.scale(
-                      scale: 0.8,
+                      scale: 0.8.sp,
                       child: CupertinoSwitch(
                           activeColor: Colors.purpleAccent,
                           value: true,
@@ -163,10 +163,10 @@ class _setting_pgState extends State<setting_pg> {
                     onTap: () {},
                     leading: Text(
                       'Opportunity',
-                      style: TextStyle(fontSize: 18),
+                      style: TextStyle(fontSize: 18.sp),
                     ),
                     trailing: Transform.scale(
-                      scale: 0.8,
+                      scale: 0.8.sp,
                       child: CupertinoSwitch(
                           activeColor: Colors.purpleAccent,
                           value: true,
@@ -176,15 +176,18 @@ class _setting_pgState extends State<setting_pg> {
                 ],
               ),
             ),
+            SizedBox(height: 5.h),
             Center(
               child: OutlinedButton(
                   style: OutlinedButton.styleFrom(
-                      side: BorderSide(width: 2, color: Colors.purpleAccent)),
+                      side: BorderSide(width: 2.w, color: Colors.purpleAccent)),
                   onPressed: () {},
                   child: Text(
                     'SIGN OUT',
                     style: TextStyle(
-                        fontSize: 15, letterSpacing: 8, color: Colors.white),
+                        fontSize: 15.sp,
+                        letterSpacing: 8.sp,
+                        color: Colors.white),
                   )),
             )
           ],

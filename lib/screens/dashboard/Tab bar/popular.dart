@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:music_app/conponents/arrData.dart';
 import 'package:music_app/screens/play%20screen/play_pg.dart';
+import 'package:music_app/widgets/usefull_icon_button/heartIcon.dart';
 
 import '../../../Bloc/theme_bloc.dart';
 
@@ -54,9 +55,7 @@ class _popularState extends State<popular> {
                         subtitle: Text(
                           '${Data.arrNames[index]['arrSubNames']}',
                         ),
-                        trailing: Icon(
-                          FontAwesomeIcons.heart,
-                        )),
+                        trailing: heartIcon()),
                   );
                 },
               ),

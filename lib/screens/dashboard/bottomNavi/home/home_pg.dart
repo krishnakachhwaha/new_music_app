@@ -8,36 +8,7 @@ import 'package:music_app/screens/dashboard/Tab%20bar/recomm.dart';
 import 'package:music_app/screens/dashboard/Tab%20bar/rock_pg.dart';
 import 'package:music_app/screens/dashboard/slider/slider_pg.dart';
 import '../../../../Bloc/theme_bloc.dart';
-import '../../../../bloc/theme_events.dart';
-import '../../../../themeData/app_theme_data.dart';
 import '../../drawer/drawer_pg.dart';
-import '../typeAnimation.dart';
-
-void main() {
-  runApp(BlocProvider(
-    create: (context) => ThemeBloc(),
-    child: MyApp(),
-  ));
-}
-
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return BlocBuilder<ThemeBloc, ThemeMode>(
-      builder: (context, state) {
-        return ScreenUtilInit(builder: (context, child) {
-          return MaterialApp(
-            debugShowCheckedModeBanner: false,
-            theme: lightTheme,
-            themeMode: state,
-            darkTheme: darkTheme,
-            home: home_pg(),
-          );
-        });
-      },
-    );
-  }
-}
 
 class home_pg extends StatefulWidget {
   const home_pg({Key? key}) : super(key: key);
@@ -48,9 +19,6 @@ class home_pg extends StatefulWidget {
 class _home_pgState extends State<home_pg> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
-    final mqh = MediaQuery.of(context).size.height;
-    final mqw = MediaQuery.of(context).size.width;
-
     return DefaultTabController(
       length: 5,
       child: Scaffold(
@@ -101,7 +69,10 @@ class _home_pgState extends State<home_pg> with TickerProviderStateMixin {
                               fontSize: 14.sp,
                               fontWeight: FontWeight.bold,
                               letterSpacing: 1.sp,
-                              color: Colors.white),
+                              color: context.read<ThemeBloc>().state ==
+                                      ThemeMode.dark
+                                  ? Colors.white
+                                  : Colors.black),
                           isScrollable: true,
                           tabAlignment: TabAlignment.center,
                           indicator: BoxDecoration(

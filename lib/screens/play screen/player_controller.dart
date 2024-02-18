@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class playerControls extends StatelessWidget {
@@ -73,8 +74,8 @@ class _PlayPause_ControlState extends State<PlayPause_Control> {
                   ])),
         ),
         Container(
-            width: mqw * 0.24,
-            height: mqh * 0.1,
+            width: 90.w,
+            height: 90.h,
             decoration:
                 BoxDecoration(shape: BoxShape.circle, color: Colors.black),
             child: IconButton(

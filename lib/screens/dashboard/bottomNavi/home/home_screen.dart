@@ -1,10 +1,33 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:music_app/screens/dashboard/bottomNavi/home/home_pg.dart';
 import 'package:music_app/screens/dashboard/bottomNavi/premium/premium_pg.dart';
+import '../../../../Bloc/theme_bloc.dart';
+import '../../../../themeData/app_theme_data.dart';
 import '../library/library_pg.dart';
 import '../search/search_pg.dart';
+
+void main() {
+  runApp(BlocProvider(
+    create: (context) => ThemeBloc(),
+    child: ScreenUtilInit(builder: (context, child) {
+      return BlocBuilder<ThemeBloc, ThemeMode>(
+        builder: (context, state) {
+          return MaterialApp(
+              debugShowCheckedModeBanner: false,
+              title: 'GNav',
+              theme: lightTheme,
+              themeMode: state,
+              darkTheme: darkTheme,
+              home: Example());
+        },
+      );
+    }),
+  ));
+}
 
 class Example extends StatefulWidget {
   @override
@@ -38,7 +61,6 @@ class _ExampleState extends State<Example> {
         iconSize: 20,
         padding: EdgeInsets.symmetric(horizontal: 18, vertical: 18),
         duration: Duration(milliseconds: 300),
-        //tabBackgroundColor: Colors.grey.shade600,
         color: Colors.white,
         tabs: [
           GButton(
@@ -47,15 +69,15 @@ class _ExampleState extends State<Example> {
           ),
           GButton(
             icon: FontAwesomeIcons.search,
-            text: 'Likes',
-          ),
-          GButton(
-            icon: FontAwesomeIcons.bookOpen,
             text: 'Search',
           ),
           GButton(
-            icon: FontAwesomeIcons.indianRupeeSign,
-            text: 'Profile',
+            icon: FontAwesomeIcons.bookOpen,
+            text: 'Library',
+          ),
+          GButton(
+            icon: FontAwesomeIcons.crown,
+            text: 'Premium',
           ),
         ],
         selectedIndex: _selectedIndex,
