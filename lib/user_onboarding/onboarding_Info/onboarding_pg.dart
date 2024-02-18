@@ -13,12 +13,13 @@ void main() {
       return BlocBuilder<ThemeBloc, ThemeMode>(
         builder: (context, state) {
           return MaterialApp(
-              debugShowCheckedModeBanner: false,
-              title: 'GNav',
-              theme: lightTheme,
-              themeMode: state,
-              darkTheme: darkTheme,
-              home: onboarding());
+            debugShowCheckedModeBanner: false,
+            title: 'GNav',
+            theme: lightTheme,
+            themeMode: state,
+            darkTheme: darkTheme,
+            home: onboarding(),
+          );
         },
       );
     }),
