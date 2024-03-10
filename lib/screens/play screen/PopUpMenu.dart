@@ -16,49 +16,52 @@ class popUpMenu extends StatelessWidget {
             FontAwesomeIcons.ellipsisVertical,
             color: Colors.white,
           ),
-          color: Colors.transparent,
+          color: Colors.black,
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(21)),
           itemBuilder: (context) => [
             PopupMenuItem(
-                child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Icon(
-                  FontAwesomeIcons.minusCircle,
-                  size: 20,
-                ),
-                Text('hide song'),
-              ],
+                child: ListTile(
+              trailing: Icon(FontAwesomeIcons.music, color: Colors.white),
+              title: Text(
+                'add to playlist',
+                style: TextStyle(color: Colors.white),
+              ),
             )),
             PopupMenuItem(
-                child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Icon(
-                  FontAwesomeIcons.share,
-                  size: 20,
-                ),
-                Text('share'),
-              ],
+                child: ListTile(
+              trailing: Icon(FontAwesomeIcons.plusCircle, color: Colors.white),
+              title: Text(
+                'add to queue',
+                style: TextStyle(color: Colors.white),
+              ),
             )),
             PopupMenuItem(
-                child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Icon(
-                  FontAwesomeIcons.music,
-                  size: 20,
-                ),
-                Text('playlist'),
-              ],
-            ))
+                child: ListTile(
+              trailing: Icon(Icons.hide_source, color: Colors.white),
+              title: Text(
+                'hide',
+                style: TextStyle(color: Colors.white),
+              ),
+            )),
+            PopupMenuItem(
+                child: ListTile(
+              trailing: Icon(FontAwesomeIcons.shareAlt, color: Colors.white),
+              title: Text(
+                'share',
+                style: TextStyle(color: Colors.white),
+              ),
+            )),
+            PopupMenuItem(
+                child: ListTile(
+              trailing: Icon(FontAwesomeIcons.download, color: Colors.white),
+              title: Text(
+                'download',
+                style: TextStyle(color: Colors.white),
+              ),
+            )),
           ],
         ),
-        PopupMenuItem(
-            child: Row(
-          children: [],
-        ))
       ],
     );
   }

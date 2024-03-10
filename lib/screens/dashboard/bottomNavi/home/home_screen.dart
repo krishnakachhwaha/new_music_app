@@ -5,6 +5,9 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:music_app/screens/dashboard/bottomNavi/home/home_pg.dart';
 import 'package:music_app/screens/dashboard/bottomNavi/premium/premium_pg.dart';
+import 'package:music_app/screens/play%20screen/play_pg.dart';
+import 'package:music_app/widgets/usefull_icon_button/playButton.dart';
+import 'package:sliding_up_panel/sliding_up_panel.dart';
 import '../../../../Bloc/theme_bloc.dart';
 import '../../../../themeData/app_theme_data.dart';
 import '../library/library_pg.dart';
@@ -48,7 +51,14 @@ class _ExampleState extends State<Example> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: _widgetOptions.elementAt(_selectedIndex),
+      body: SlidingUpPanel(
+        maxHeight: 610.sp,
+        body: _widgetOptions.elementAt(_selectedIndex),
+        backdropEnabled: true,
+        panelBuilder: (controller) => play_pg(img: '0', imgName: '0'),
+        collapsed: Collapsed(),
+        minHeight: 70,
+      ),
       bottomNavigationBar: GNav(
         backgroundColor: Colors.grey.shade800,
         hoverColor: Colors.grey[200]!,
@@ -89,4 +99,41 @@ class _ExampleState extends State<Example> {
       ),
     );
   }
+}
+
+Widget Collapsed() {
+  return Container(
+    color: Colors.indigo.shade800,
+    child: Row(
+      children: [
+        Expanded(
+          child: ListTile(
+            leading: Container(
+              height: 50.h,
+              width: 58.w,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  image: DecorationImage(
+                      image: AssetImage('assets/images/song2.jpeg'))),
+            ),
+            title: Text(
+              'Song Name',
+              style: TextStyle(
+                  fontSize: 18,
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold),
+            ),
+            subtitle: Text(
+              'Artist Detail',
+              style: TextStyle(
+                fontSize: 14,
+                color: Colors.white,
+              ),
+            ),
+            trailing: PlyPauseButton(),
+          ),
+        )
+      ],
+    ),
+  );
 }

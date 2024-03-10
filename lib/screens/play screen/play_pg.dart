@@ -4,8 +4,7 @@ import 'package:flip_card/flip_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:music_app/conponents/arrData.dart';
-import 'package:music_app/screens/dashboard/Tab%20bar/popular.dart';
+import 'package:music_app/screens/play%20screen/PopUpMenu.dart';
 
 import 'package:music_app/screens/play%20screen/player_controller.dart';
 
@@ -35,50 +34,56 @@ class _play_pgState extends State<play_pg> {
               ),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.only(top: 50),
-            child: Column(
-              children: [
-                Row(
-                  children: [
-                    IconButton(
-                        onPressed: () {},
-                        icon: Icon(
-                          Icons.keyboard_arrow_down,
-                          color: Colors.white,
-                          size: 30,
-                        )),
-                  ],
-                ),
-                FlipCard(
+          Column(
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  IconButton(
+                      onPressed: () {},
+                      icon: Icon(
+                        Icons.keyboard_arrow_down,
+                        color: Colors.white,
+                        size: 30,
+                      )),
+                  popUpMenu()
+                ],
+              ),
+              SizedBox(
+                height: 300,
+                width: 330,
+                child: FlipCard(
                   front: musicNameNDImg(widget.img, widget.imgName),
                   back: lyrics(),
                 ),
-                SizedBox(height: 75.h),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    button_Controls(icon: FontAwesomeIcons.heart),
-                    button_Controls(icon: FontAwesomeIcons.repeat),
-                    button_Controls(icon: FontAwesomeIcons.shuffle),
-                    button_Controls(icon: Icons.lyrics_outlined),
-                  ],
-                ),
-                SizedBox(height: 18.h),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    Text(
-                      '0.0',
-                      style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white),
+              ),
+              SizedBox(height: 40.h),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  button_Controls(icon: FontAwesomeIcons.heart),
+                  button_Controls(icon: FontAwesomeIcons.repeat),
+                  button_Controls(icon: FontAwesomeIcons.shuffle),
+                  button_Controls(icon: Icons.lyrics_outlined),
+                ],
+              ),
+              SizedBox(height: 40.h),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Text(
+                    '0.0',
+                    style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white),
+                  ),
+                  SliderTheme(
+                    data: SliderThemeData(
+                      trackHeight: 6,
                     ),
-                    SliderTheme(
-                      data: SliderThemeData(
-                        trackHeight: 6,
-                      ),
+                    child: SizedBox(
+                      width: 330,
                       child: Slider(
                         activeColor: Colors.purpleAccent,
                         inactiveColor: Colors.purple.shade100,
@@ -92,22 +97,23 @@ class _play_pgState extends State<play_pg> {
                         max: 20,
                       ),
                     ),
-                    Text(
-                      '0.0',
-                      style: TextStyle(fontSize: 18, color: Colors.white),
-                    ),
-                  ],
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    Controls(icon: FontAwesomeIcons.backwardStep),
-                    PlayPause_Control(),
-                    Controls(icon: FontAwesomeIcons.forwardStep)
-                  ],
-                )
-              ],
-            ),
+                  ),
+                  Text(
+                    '0.0',
+                    style: TextStyle(fontSize: 18, color: Colors.white),
+                  ),
+                ],
+              ),
+              SizedBox(height: 25.h),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Controls(icon: FontAwesomeIcons.backwardStep),
+                  PlayPause_Control(),
+                  Controls(icon: FontAwesomeIcons.forwardStep)
+                ],
+              )
+            ],
           ),
         ],
       ),
@@ -143,17 +149,26 @@ Widget musicNameNDImg(String img, String imgName) {
 }
 
 Widget lyrics() {
-  return Column(
-    children: [
-      Container(
-        alignment: Alignment.topCenter,
-        width: 300,
-        height: 270,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(30),
-          color: Colors.white10,
-        ),
-      )
-    ],
+  return Container(
+    alignment: Alignment.topCenter,
+    width: 330,
+    height: 300,
+    decoration: BoxDecoration(
+      borderRadius: BorderRadius.circular(30),
+      color: Colors.white10,
+    ),
+    child: Column(
+      children: [
+        Padding(
+          padding: const EdgeInsets.only(top: 250, left: 280),
+          child: IconButton(
+            onPressed: () {},
+            icon: Icon(Icons.fullscreen),
+            iconSize: 25,
+            color: Colors.white,
+          ),
+        )
+      ],
+    ),
   );
 }

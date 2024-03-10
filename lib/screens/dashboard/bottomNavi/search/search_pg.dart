@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:music_app/screens/dashboard/bottomNavi/search/recently_searched.pg.dart';
 import 'package:music_app/widgets/usefull_icon_button/staggered.dart';
 
 import '../../../../Bloc/theme_bloc.dart';
@@ -27,39 +28,29 @@ class _search_pgState extends State<search_pg> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                'Welcome Back',
-                style: TextStyle(fontSize: 35.sp),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    'Welcome Back',
+                    style: TextStyle(fontSize: 35.sp),
+                  ),
+                  IconButton(
+                    icon: Icon(FontAwesomeIcons.search),
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => recently_searched()));
+                    },
+                  )
+                ],
               ),
               Text(
                 'what would you like to listen today?',
                 style: TextStyle(fontSize: 18.sp),
               ),
-              SizedBox(height: 18.h),
-              TextField(
-                decoration: InputDecoration(
-                    hintText: 'Song Request',
-                    enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(17.sp),
-                        borderSide: BorderSide(
-                          color:
-                              context.read<ThemeBloc>().state == ThemeMode.dark
-                                  ? Colors.white
-                                  : Colors.black,
-                        )),
-                    prefixIcon: Icon(
-                      FontAwesomeIcons.search,
-                      size: 20.sp,
-                    ),
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(17.sp),
-                        borderSide: BorderSide(
-                          color:
-                              context.read<ThemeBloc>().state == ThemeMode.dark
-                                  ? Colors.white
-                                  : Colors.black,
-                        ))),
-              ),
+
               SizedBox(height: 30.h),
               Text('Recently played', style: TextStyle(fontSize: 23.sp)),
               SizedBox(

@@ -1,11 +1,14 @@
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:music_app/Bloc/theme_bloc.dart';
 import 'package:music_app/screens/dashboard/drawer/personalData.dart';
-
+import 'package:music_app/screens/dashboard/drawer/setting_pg.dart';
+import 'package:music_app/widgets/usefull_icon_button/PgLoading.dart';
 import '../../../bloc/theme_events.dart';
+import '../../../widgets/usefull_icon_button/Circular_Progss_Indi.dart';
 
 class drawer_pg extends StatefulWidget {
   const drawer_pg({Key? key}) : super(key: key);
@@ -22,30 +25,35 @@ class _drawer_pgState extends State<drawer_pg> {
         'arrIcon': FontAwesomeIcons.user,
         'arrIconColor': Colors.yellow.shade700,
         'arrtitle': 'Personal Data',
+        'onTap': personalData()
       },
       {
         'arrBoxcolor': Colors.blue.shade100,
         'arrIcon': Icons.settings,
         'arrIconColor': Colors.blue.shade700,
-        'arrtitle': 'Setting'
+        'arrtitle': 'Setting',
+        'onTap': setting_pg()
       },
       {
         'arrBoxcolor': Colors.green.shade100,
         'arrIcon': FontAwesomeIcons.clock,
         'arrIconColor': Colors.green.shade700,
-        'arrtitle': 'Purchase History'
+        'arrtitle': 'Purchase History',
+        'onTap': PgLoader()
       },
       {
         'arrBoxcolor': Colors.orange.shade100,
         'arrIcon': FontAwesomeIcons.questionCircle,
         'arrIconColor': Colors.orange.shade700,
-        'arrtitle': 'Help & Support'
+        'arrtitle': 'Help & Support',
+        'onTap': CirlcularProgssIndi()
       },
       {
         'arrBoxcolor': Colors.indigo.shade100,
         'arrIcon': FontAwesomeIcons.signOut,
         'arrIconColor': Colors.indigo.shade700,
         'arrtitle': 'Logout',
+        //'onTap': _logOut_pg(context),
       },
     ];
     return Scaffold(
@@ -102,35 +110,43 @@ class _drawer_pgState extends State<drawer_pg> {
                 '____________________________________________________',
                 style: TextStyle(color: Colors.grey.shade500),
               ),
-              Expanded(
+              SizedBox(height: 10.h),
+              SizedBox(
+                  height: 280,
                   child: ListView.builder(
-                itemCount: arrMap.length,
-                itemBuilder: (context, index) {
-                  return ListTile(
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => arrMap[index]['onTap']));
+                    padding: EdgeInsets.zero,
+                    itemCount: arrMap.length,
+                    itemBuilder: (context, index) {
+                      return ListTile(
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      arrMap[index]['onTap']));
+                        },
+                        leading: Container(
+                          width: 40.w,
+                          height: 40.h,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(12),
+                            color: arrMap[index]['arrBoxcolor'],
+                          ),
+                          child: Icon(arrMap[index]['arrIcon'],
+                              color: arrMap[index]['arrIconColor'],
+                              size: 20.sp),
+                        ),
+                        title: Text(
+                          '${arrMap[index]['arrtitle']}',
+                          style: TextStyle(fontSize: 16),
+                        ),
+                      );
                     },
-                    leading: Container(
-                      width: 40.w,
-                      height: 40.h,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(12),
-                        color: arrMap[index]['arrBoxcolor'],
-                      ),
-                      child: Icon(arrMap[index]['arrIcon'],
-                          color: arrMap[index]['arrIconColor'], size: 20.sp),
-                    ),
-                    title: Text(
-                      '${arrMap[index]['arrtitle']}',
-                      style: TextStyle(fontSize: 16),
-                    ),
-                  );
-                },
-              )),
+                  )),
               ListTile(
+                  onTap: () {
+                    _logOut_pg(context);
+                  },
                   leading: Container(
                     width: 40.w,
                     height: 40.h,
@@ -153,5 +169,19 @@ class _drawer_pgState extends State<drawer_pg> {
             ],
           ),
         ));
+  }
+
+  _logOut_pg(context) {
+    AwesomeDialog(
+      context: context,
+      dialogType: DialogType.warning,
+      animType: AnimType.bottomSlide,
+      showCloseIcon: true,
+      title: 'Warning',
+      descTextStyle: TextStyle(fontSize: 18),
+      desc: "Oh no! You\'re leaving...\n Are you sure?",
+      btnCancelOnPress: () {},
+      btnOkOnPress: () {},
+    ).show();
   }
 }

@@ -33,15 +33,19 @@ dependencies:
   animated_text_kit: any
   lottie: any
   flutter_slidable: any
-  flutter_staggered_animations: ^1.1.1
-  flutter_staggered_grid_view: ^0.7.0
+  flutter_staggered_animations: any
+  flutter_staggered_grid_view: any
+  flutter_animate: any
+  flutter_spinkit: any
+  sliding_up_panel: any
   floating_action_bubble: any
   auto_size_text: any
   floating_navbar: any
   bloc: any
   carousel_slider: any
-  flip_card: ^0.7.0
-  flutter_screenutil: ^5.9.0
+  flip_card: any
+  flutter_screenutil: any
+  awesome_dialog: any
 
   contained_tab_bar_view: any
   cupertino_icons: any

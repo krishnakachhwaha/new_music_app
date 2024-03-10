@@ -128,9 +128,6 @@ class _LikedSongs_pgState extends State<LikedSongs_pg> {
                       SlidableAction(
                         label: 'remove',
                         backgroundColor: Colors.red,
-                        borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(10),
-                            bottomLeft: Radius.circular(10)),
                         onPressed: (context) {},
                         icon: FontAwesomeIcons.boxArchive,
                       ),
@@ -181,13 +178,8 @@ class _LikedSongs_pgState extends State<LikedSongs_pg> {
                             trailing: IconButton(
                               onPressed: () {
                                 showModalBottomSheet(
-                                  barrierColor: Colors.white24,
-                                  backgroundColor: Colors.black,
-                                  context: context,
-                                  builder: (context) {
-                                    return Center(child: Column());
-                                  },
-                                );
+                                    context: context,
+                                    builder: (context) => ShowBottomSheet());
                               },
                               icon: Icon(FontAwesomeIcons.ellipsisVertical,
                                   color: context.read<ThemeBloc>().state ==
@@ -214,4 +206,72 @@ class _LikedSongs_pgState extends State<LikedSongs_pg> {
       floatingActionButtonLocation: FloatingActionButtonLocation.endTop,
     );
   }
+
+  Widget ShowBottomSheet() => Container(
+        width: double.infinity,
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(20), topRight: Radius.circular(20)),
+            color: Colors.black),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                Icon(
+                  FontAwesomeIcons.fileCirclePlus,
+                  color: Colors.white,
+                ),
+                Text(
+                  'add to playlist',
+                  style: TextStyle(fontSize: 20, color: Colors.white),
+                ),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                Icon(
+                  Icons.add_circle_outline,
+                  size: 25,
+                  color: Colors.white,
+                ),
+                Text(
+                  'add to queue',
+                  style: TextStyle(fontSize: 20, color: Colors.white),
+                ),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                Icon(
+                  FontAwesomeIcons.share,
+                  size: 25,
+                  color: Colors.white,
+                ),
+                Text(
+                  'share',
+                  style: TextStyle(fontSize: 20, color: Colors.white),
+                ),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                Icon(
+                  Icons.hide_source,
+                  size: 25,
+                  color: Colors.white,
+                ),
+                Text(
+                  'hide song',
+                  style: TextStyle(fontSize: 20, color: Colors.white),
+                ),
+              ],
+            ),
+          ],
+        ),
+      );
 }

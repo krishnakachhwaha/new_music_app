@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lottie/lottie.dart';
 import 'package:music_app/screens/dashboard/bottomNavi/home/home_screen.dart';
+import 'package:music_app/screens/dashboard/bottomNavi/search/recently_searched.pg.dart';
 import '../../Bloc/theme_bloc.dart';
 import '../../themeData/app_theme_data.dart';
 

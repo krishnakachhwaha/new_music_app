@@ -30,12 +30,10 @@ class button_Controls extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final mqh = MediaQuery.of(context).size.height;
-    final mqw = MediaQuery.of(context).size.width;
     return Icon(
       icon,
       color: Colors.white,
-      size: 20,
+      size: 20.sp,
     );
   }
 }
@@ -53,14 +51,12 @@ class _PlayPause_ControlState extends State<PlayPause_Control> {
       FontAwesomeIcons.play; //the main state of the play btn icon
   @override
   Widget build(BuildContext context) {
-    final mqh = MediaQuery.of(context).size.height;
-    final mqw = MediaQuery.of(context).size.width;
     return Stack(
       alignment: Alignment.center,
       children: [
         Container(
-          width: mqw * 0.3,
-          height: mqh * 0.3,
+          width: 95.w,
+          height: 95.h,
           decoration: BoxDecoration(
               shape: BoxShape.circle,
               gradient: LinearGradient(
@@ -74,8 +70,8 @@ class _PlayPause_ControlState extends State<PlayPause_Control> {
                   ])),
         ),
         Container(
-            width: 90.w,
-            height: 90.h,
+            width: 80.w,
+            height: 80.h,
             decoration:
                 BoxDecoration(shape: BoxShape.circle, color: Colors.black),
             child: IconButton(
