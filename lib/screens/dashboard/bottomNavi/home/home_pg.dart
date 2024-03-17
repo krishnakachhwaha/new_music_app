@@ -7,7 +7,9 @@ import 'package:music_app/screens/dashboard/Tab%20bar/popular.dart';
 import 'package:music_app/screens/dashboard/Tab%20bar/recomm.dart';
 import 'package:music_app/screens/dashboard/Tab%20bar/rock_pg.dart';
 import 'package:music_app/screens/dashboard/slider/slider_pg.dart';
+import 'package:music_app/services/API_services.dart';
 import '../../../../Bloc/theme_bloc.dart';
+import '../../../../models/music_model.dart';
 import '../../drawer/drawer_pg.dart';
 
 class home_pg extends StatefulWidget {
@@ -17,6 +19,21 @@ class home_pg extends StatefulWidget {
 }
 
 class _home_pgState extends State<home_pg> with TickerProviderStateMixin {
+  List<MusicDataResponse> musicList = [];
+
+  @override
+  void initState() {
+    super.initState();
+    ApiService.getAllFetchMusicData();
+  }
+
+  Future<void> fetchMusicData() async {
+    final musiclist = await ApiService.getAllFetchMusicData();
+    setState(() {
+      musicList = musiclist;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -58,7 +75,10 @@ class _home_pgState extends State<home_pg> with TickerProviderStateMixin {
                                           ? Colors.purpleAccent
                                           : Colors.purple)),
                               SizedBox(height: 10.h),
-                              slider_pg(),
+                              slider_pg(
+                                musicList: musicList,
+                                index: 0,
+                              ),
                             ],
                           ),
                         ),
