@@ -1,34 +1,27 @@
-// import 'package:flutter/material.dart';
-// import 'package:flutter_bloc/flutter_bloc.dart';
-// import 'package:music_app/route.dart';
-// import 'package:music_app/screens/dashboard/bottomNavi/typeAnimation.dart';
-// import 'package:music_app/screens/dashboard/bottomNavi/home_pg.dart';
-// import 'bloc/bottom_nav_bloc.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:music_app/themeData/app_theme_data.dart';
+import 'package:music_app/user_onboarding/splash_screen.dart';
 
-// void main() async {
-//   WidgetsFlutterBinding.ensureInitialized();
+import 'Bloc/theme_bloc.dart';
 
-//   runApp(const MyApp());
-// }
-
-// class MyApp extends StatelessWidget {
-//   const MyApp({super.key});
-//   // This widget is the root of your application.
-//   @override
-//   Widget build(BuildContext context) {
-//     return BlocProvider(
-//       create: (context) => BottomNavBloc(),
-//       child: MaterialApp(
-//         debugShowCheckedModeBanner: false,
-//         title: 'Flutter Demo',
-//         theme: ThemeData(
-//           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-//           useMaterial3: true,
-//         ),
-//         initialRoute: '/',
-//         onGenerateRoute: RouteGen().generateRoute,
-//         home: Home_page(),
-//       ),
-//     );
-//   }
-// }
+void main() {
+  runApp(BlocProvider(
+    create: (context) => ThemeBloc(),
+    child: ScreenUtilInit(builder: (context, child) {
+      return BlocBuilder<ThemeBloc, ThemeMode>(
+        builder: (context, state) {
+          return MaterialApp(
+            debugShowCheckedModeBanner: false,
+            title: 'GNav',
+            theme: lightTheme,
+            themeMode: state,
+            darkTheme: darkTheme,
+            home: SplashScreen(),
+          );
+        },
+      );
+    }),
+  ));
+}

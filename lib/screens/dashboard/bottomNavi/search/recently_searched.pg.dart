@@ -14,7 +14,6 @@ import '../../../../Bloc/theme_bloc.dart';
 
 class recently_searched extends StatefulWidget {
   const recently_searched({super.key});
-
   @override
   State<recently_searched> createState() => _recently_searchedState();
 }
@@ -31,17 +30,14 @@ class _recently_searchedState extends State<recently_searched> {
         child: Column(
           children: [
             SizedBox(height: 40.h),
-            Padding(
-              padding: const EdgeInsets.only(right: 400),
-              child: BackButton(onPressed: () {
-                //////pressed
-                log('looool');
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => home_pg(),
-                    ));
-              }),
+            Align(
+              alignment: Alignment.centerLeft,
+              child: IconButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                icon: Icon(Icons.arrow_back_ios),
+              ),
             ),
             SizedBox(height: 10.h),
             TextField(

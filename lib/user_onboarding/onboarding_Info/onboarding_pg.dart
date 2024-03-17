@@ -3,29 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lottie/lottie.dart';
 import 'package:music_app/screens/dashboard/bottomNavi/home/home_screen.dart';
-import 'package:music_app/screens/dashboard/bottomNavi/search/recently_searched.pg.dart';
+import 'package:music_app/user_onboarding/login/login_pg.dart';
 import '../../Bloc/theme_bloc.dart';
 import '../../themeData/app_theme_data.dart';
-
-void main() {
-  runApp(BlocProvider(
-    create: (context) => ThemeBloc(),
-    child: ScreenUtilInit(builder: (context, child) {
-      return BlocBuilder<ThemeBloc, ThemeMode>(
-        builder: (context, state) {
-          return MaterialApp(
-            debugShowCheckedModeBanner: false,
-            title: 'GNav',
-            theme: lightTheme,
-            themeMode: state,
-            darkTheme: darkTheme,
-            home: onboarding(),
-          );
-        },
-      );
-    }),
-  ));
-}
 
 class onboarding extends StatefulWidget {
   const onboarding({super.key});
@@ -58,7 +38,7 @@ class _onboardingState extends State<onboarding> {
 
   continueMethod() {
     Navigator.pushReplacement(
-        context, MaterialPageRoute(builder: (context) => Example()));
+        context, MaterialPageRoute(builder: (context) => login_pg()));
   }
 
   int currentPage = 0;

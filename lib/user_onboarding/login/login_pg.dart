@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:line_icons/line_icon.dart';
+import 'package:music_app/screens/dashboard/bottomNavi/home/home_pg.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class login_pg extends StatefulWidget {
   const login_pg({super.key});
@@ -96,9 +99,19 @@ class _login_pgState extends State<login_pg> {
                     side: BorderSide(width: 2, color: Colors.pink.shade300),
                     fixedSize: Size(200, 60),
                     backgroundColor: Colors.pink.shade200),
-                onPressed: () {},
+                onPressed: () async {
+                  final SharedPreferences pref =
+                      await SharedPreferences.getInstance();
+                  final _check = pref.setBool("IsLogging", true);
+
+                  Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => home_pg(),
+                      ));
+                },
                 child: Text(
-                  'SIGNUP',
+                  'LOGIN',
                   style: TextStyle(fontSize: 25, color: Colors.white),
                 )),
             SizedBox(height: 70.h),

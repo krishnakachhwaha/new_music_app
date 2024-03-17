@@ -32,11 +32,19 @@ dependencies:
   floating_bottom_navigation_bar: any
   animated_text_kit: any
   lottie: any
+  firebase_core: any
+  firebase_auth: any
+  image_picker: any
+  cloud_firestore: any
+  firebase_storage: any
+  shared_preferences: any
   flutter_slidable: any
+  shimmer: ^3.0.0
   flutter_staggered_animations: any
   flutter_staggered_grid_view: any
   flutter_animate: any
   flutter_spinkit: any
+  awesome_snackbar_content: ^0.1.3
   sliding_up_panel: any
   floating_action_bubble: any
   auto_size_text: any

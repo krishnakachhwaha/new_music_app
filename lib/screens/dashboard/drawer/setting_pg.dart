@@ -1,9 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:line_icons/line_icon.dart';
 import 'package:line_icons/line_icons.dart';
+import 'package:music_app/widgets/usefull_icon_button/back_button.dart';
+
+import '../../../Bloc/theme_bloc.dart';
 
 class setting_pg extends StatefulWidget {
   const setting_pg({Key? key}) : super(key: key);
@@ -16,30 +20,30 @@ class _setting_pgState extends State<setting_pg> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: context.read<ThemeBloc>().state == ThemeMode.dark
+          ? Colors.black
+          : Colors.white,
       body: Padding(
-        padding: EdgeInsets.only(left: 5, right: 5),
+        padding: EdgeInsets.only(left: 10, right: 10),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(height: 40.h),
-            BackButton(
-              color: Colors.white,
-            ),
-            // Text(
-            //   '__________________________________________________________________________',
-            //   style: TextStyle(fontSize: 10.sp, color: Colors.grey),
-            // ),
-            SizedBox(height: 10.h),
+            SizedBox(height: 60.h),
+            back_button(),
+            SizedBox(height: 20.h),
             Text(
               'Setting',
-              style: TextStyle(fontSize: 30.sp, color: Colors.white),
+              style: TextStyle(
+                  fontSize: 28.sp,
+                  color: context.read<ThemeBloc>().state == ThemeMode.dark
+                      ? Colors.white
+                      : Colors.black),
             ),
             SizedBox(height: 20.h),
             Row(
               children: [
                 Icon(
-                  FontAwesomeIcons.user,
+                  FontAwesomeIcons.userLarge,
                   size: 20.sp,
                   color: Colors.purpleAccent,
                 ),
@@ -48,19 +52,29 @@ class _setting_pgState extends State<setting_pg> {
                   'Account',
                   style: TextStyle(
                       fontSize: 20.sp,
-                      fontWeight: FontWeight.w900,
-                      color: Colors.white),
+                      fontWeight: FontWeight.w700,
+                      color: context.read<ThemeBloc>().state == ThemeMode.dark
+                          ? Colors.white
+                          : Colors.black),
                 ),
               ],
             ),
             SizedBox(height: 5.h),
             Text(
-              '_________________________________________________________________________________________________________________________________________________________________________',
-              style: TextStyle(fontSize: 5.sp, color: Colors.grey.shade400),
+              '_________________________________________________________________________________________',
+              style: TextStyle(
+                  fontSize: 8.sp,
+                  color: context.read<ThemeBloc>().state == ThemeMode.dark
+                      ? Colors.grey.shade400
+                      : Colors.black),
             ),
             ListTileTheme(
-              iconColor: Colors.white70,
-              textColor: Colors.white70,
+              iconColor: context.read<ThemeBloc>().state == ThemeMode.dark
+                  ? Colors.white70
+                  : Colors.black54,
+              textColor: context.read<ThemeBloc>().state == ThemeMode.dark
+                  ? Colors.white70
+                  : Colors.black87,
               child: Column(
                 children: [
                   ListTile(
@@ -120,16 +134,22 @@ class _setting_pgState extends State<setting_pg> {
                         'Notification',
                         style: TextStyle(
                             fontSize: 20.sp,
-                            fontWeight: FontWeight.w900,
-                            color: Colors.white),
+                            fontWeight: FontWeight.w700,
+                            color: context.read<ThemeBloc>().state ==
+                                    ThemeMode.dark
+                                ? Colors.white
+                                : Colors.black),
                       ),
                     ],
                   ),
                   SizedBox(height: 5.h),
                   Text(
-                    '__________________________________________________________________________',
-                    style:
-                        TextStyle(fontSize: 10.sp, color: Colors.grey.shade400),
+                    '_______________________________________________________________________________',
+                    style: TextStyle(
+                        fontSize: 9.sp,
+                        color: context.read<ThemeBloc>().state == ThemeMode.dark
+                            ? Colors.grey.shade400
+                            : Colors.black),
                   ),
                   ListTile(
                     onTap: () {},
@@ -187,7 +207,9 @@ class _setting_pgState extends State<setting_pg> {
                     style: TextStyle(
                         fontSize: 15.sp,
                         letterSpacing: 8.sp,
-                        color: Colors.white),
+                        color: context.read<ThemeBloc>().state == ThemeMode.dark
+                            ? Colors.white
+                            : Colors.black),
                   )),
             )
           ],

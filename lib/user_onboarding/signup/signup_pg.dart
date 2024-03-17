@@ -1,5 +1,8 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:music_app/user_onboarding/login/login_pg.dart';
+import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 
 class signup_pg extends StatefulWidget {
   const signup_pg({super.key});
@@ -9,6 +12,10 @@ class signup_pg extends StatefulWidget {
 }
 
 class _signup_pgState extends State<signup_pg> {
+  TextEditingController emailController = TextEditingController();
+  TextEditingController nameController = TextEditingController();
+  // TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -107,12 +114,36 @@ class _signup_pgState extends State<signup_pg> {
                             width: 4, color: Colors.deepPurple.shade200))),
               ),
             ),
+            SizedBox(height: 15.h),
+            SizedBox(
+              width: 270.w,
+              child: TextField(
+                decoration: InputDecoration(
+                    prefixIcon: Icon(
+                      Icons.lock_outline,
+                      color: Colors.grey.shade600,
+                    ),
+                    suffixIcon: Icon(Icons.remove_red_eye, color: Colors.grey),
+                    hintText: 'Enter Confirm Password',
+                    hintStyle: TextStyle(color: Colors.grey),
+                    enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(30),
+                        borderSide: BorderSide(
+                            width: 4, color: Colors.deepPurple.shade200)),
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(30),
+                        borderSide: BorderSide(
+                            width: 4, color: Colors.deepPurple.shade200))),
+              ),
+            ),
             SizedBox(height: 25.h),
             ElevatedButton(
                 style: ElevatedButton.styleFrom(
                     fixedSize: Size(200, 60),
                     backgroundColor: Colors.deepPurpleAccent.shade100),
-                onPressed: () {},
+                onPressed: () {
+                  loginUser();
+                },
                 child: Text(
                   'SIGNUP',
                   style: TextStyle(fontSize: 25, color: Colors.white),
@@ -134,5 +165,28 @@ class _signup_pgState extends State<signup_pg> {
         ),
       ),
     );
+  }
+
+  loginUser() async {
+    final firebaseIns = FirebaseAuth.instance;
+
+    if (emailController.text.toString() == "" &&
+        passwordController.text.toString() == "" &&
+        nameController.text.toString() == "") {
+      if (passwordController.text.toString() == "" &&
+          nameController.text.toString() == "" &&
+          passwordController.text.toString() == "") {
+      } else {}
+    } else {}
+
+    await firebaseIns.signInWithEmailAndPassword(
+        email: emailController.text.toString(),
+        password: passwordController.text.toString());
+
+    Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (context) => login_pg(),
+        ));
   }
 }

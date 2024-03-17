@@ -8,7 +8,6 @@ import 'package:music_app/screens/dashboard/drawer/personalData.dart';
 import 'package:music_app/screens/dashboard/drawer/setting_pg.dart';
 import 'package:music_app/widgets/usefull_icon_button/PgLoading.dart';
 import '../../../bloc/theme_events.dart';
-import '../../../widgets/usefull_icon_button/Circular_Progss_Indi.dart';
 
 class drawer_pg extends StatefulWidget {
   const drawer_pg({Key? key}) : super(key: key);
@@ -46,14 +45,7 @@ class _drawer_pgState extends State<drawer_pg> {
         'arrIcon': FontAwesomeIcons.questionCircle,
         'arrIconColor': Colors.orange.shade700,
         'arrtitle': 'Help & Support',
-        'onTap': CirlcularProgssIndi()
-      },
-      {
-        'arrBoxcolor': Colors.indigo.shade100,
-        'arrIcon': FontAwesomeIcons.signOut,
-        'arrIconColor': Colors.indigo.shade700,
-        'arrtitle': 'Logout',
-        //'onTap': _logOut_pg(context),
+        'onTap': PgLoader()
       },
     ];
     return Scaffold(
@@ -65,20 +57,17 @@ class _drawer_pgState extends State<drawer_pg> {
           child: Column(
             children: [
               SizedBox(height: 40.h),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  IconButton(
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                      icon: Icon(FontAwesomeIcons.x,
-                          color:
-                              context.read<ThemeBloc>().state == ThemeMode.dark
-                                  ? Colors.white
-                                  : Colors.black,
-                          size: 20)),
-                ],
+              Align(
+                alignment: Alignment.centerRight,
+                child: IconButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    icon: Icon(FontAwesomeIcons.x,
+                        color: context.read<ThemeBloc>().state == ThemeMode.dark
+                            ? Colors.white
+                            : Colors.black,
+                        size: 20)),
               ),
               SizedBox(height: 15.h),
               Row(
@@ -112,7 +101,7 @@ class _drawer_pgState extends State<drawer_pg> {
               ),
               SizedBox(height: 10.h),
               SizedBox(
-                  height: 280,
+                  height: 225,
                   child: ListView.builder(
                     padding: EdgeInsets.zero,
                     itemCount: arrMap.length,
@@ -144,9 +133,24 @@ class _drawer_pgState extends State<drawer_pg> {
                     },
                   )),
               ListTile(
-                  onTap: () {
-                    _logOut_pg(context);
-                  },
+                onTap: () {
+                  _logOut_pg(context);
+                },
+                leading: Container(
+                  width: 40.w,
+                  height: 40.h,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(12),
+                      color: Colors.indigo.shade100),
+                  child: Icon(FontAwesomeIcons.signOut,
+                      color: Colors.indigo.shade700, size: 20.sp),
+                ),
+                title: Text(
+                  'Logout',
+                  style: TextStyle(fontSize: 15),
+                ),
+              ),
+              ListTile(
                   leading: Container(
                     width: 40.w,
                     height: 40.h,
@@ -175,8 +179,7 @@ class _drawer_pgState extends State<drawer_pg> {
     AwesomeDialog(
       context: context,
       dialogType: DialogType.warning,
-      animType: AnimType.bottomSlide,
-      showCloseIcon: true,
+      animType: AnimType.topSlide,
       title: 'Warning',
       descTextStyle: TextStyle(fontSize: 18),
       desc: "Oh no! You\'re leaving...\n Are you sure?",

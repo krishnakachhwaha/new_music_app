@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:music_app/widgets/usefull_icon_button/back_button.dart';
+
+import '../../../Bloc/theme_bloc.dart';
 
 class personalData extends StatefulWidget {
   const personalData({Key? key}) : super(key: key);
@@ -12,117 +17,138 @@ class _personalDataState extends State<personalData> {
   bool showPassword = false;
   @override
   Widget build(BuildContext context) {
-    final mqh = MediaQuery.of(context).size.height;
-    final mqw = MediaQuery.of(context).size.width;
-
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: context.read<ThemeBloc>().state == ThemeMode.dark
+          ? Colors.black
+          : Colors.white,
       body: SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.only(left: 5, right: 5),
+          padding: EdgeInsets.only(left: 10.sp, right: 10.sp),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(height: mqh * 0.05),
-              BackButton(
-                color: Colors.white,
-              ),
-              Text(
-                '_______________________________________________________________________________________________________________________________________________________',
-                style: TextStyle(fontSize: 5, color: Colors.grey),
-              ),
-              SizedBox(height: mqh * 0.02),
+              SizedBox(height: 60.h),
+              back_button(),
+              SizedBox(height: 20.h),
               Text(
                 'Edit Profile',
-                style: TextStyle(fontSize: 30, color: Colors.white),
+                style: TextStyle(
+                    fontSize: 28.sp,
+                    color: context.read<ThemeBloc>().state == ThemeMode.dark
+                        ? Colors.white
+                        : Colors.black),
               ),
-              SizedBox(height: mqh * 0.03),
+              SizedBox(height: 10.h),
               Center(
                   child: Stack(
                 children: [
                   Container(
-                    width: mqw * 0.30,
-                    height: mqh * 0.15,
-                    child: Icon(
-                      FontAwesomeIcons.userAstronaut,
-                      color: Colors.black,
-                      size: 60,
-                    ),
+                    width: 90.w,
+                    height: 90.h,
                     decoration: BoxDecoration(
-                        color: Colors.white10,
+                        color: context.read<ThemeBloc>().state == ThemeMode.dark
+                            ? Colors.white10
+                            : Colors.black12,
                         boxShadow: [
                           BoxShadow(
-                              color: Colors.white38,
-                              offset: Offset(0, 10),
-                              blurRadius: 10,
-                              spreadRadius: 2)
+                              color: context.read<ThemeBloc>().state ==
+                                      ThemeMode.dark
+                                  ? Colors.white38
+                                  : Colors.black12,
+                              offset: Offset(5.sp, 10.sp),
+                              blurRadius: 10.sp,
+                              spreadRadius: 2.sp)
                         ],
                         border: Border.all(
-                            width: mqw * 0.01,
-                            color: Theme.of(context).scaffoldBackgroundColor),
+                            width: 2.w,
+                            color: context.read<ThemeBloc>().state ==
+                                    ThemeMode.dark
+                                ? Colors.white
+                                : Colors.black),
                         shape: BoxShape.circle),
+                    child: Icon(
+                      FontAwesomeIcons.userAstronaut,
+                      color: context.read<ThemeBloc>().state == ThemeMode.dark
+                          ? Colors.white
+                          : Colors.black,
+                      size: 60.sp,
+                    ),
                   ),
                   Positioned(
-                      top: 65,
+                      top: 70,
                       bottom: 0,
                       right: 0,
                       child: Container(
-                        width: mqw * 0.09,
-                        height: mqh * 0.09,
+                        width: 30.w,
+                        height: 30.h,
                         decoration: BoxDecoration(
                           color: Colors.purpleAccent,
                           shape: BoxShape.circle,
                           border: Border.all(
-                              width: 3,
-                              color: Theme.of(context).scaffoldBackgroundColor),
+                              width: 2.w,
+                              color: context.read<ThemeBloc>().state ==
+                                      ThemeMode.dark
+                                  ? Colors.white
+                                  : Colors.black),
                         ),
                         child: Icon(
                           FontAwesomeIcons.pencil,
-                          color: Colors.white,
-                          size: 15,
+                          color:
+                              context.read<ThemeBloc>().state == ThemeMode.dark
+                                  ? Colors.white
+                                  : Colors.black,
+                          size: 13.sp,
                         ),
                       ))
                 ],
               )),
-              SizedBox(height: mqh * 0.05),
+              SizedBox(height: 40.h),
               buildTextField("Full Name", "Krishna Kachhwaha", false),
               buildTextField("E-mail", "krishnakachhwaha04@gmail.com", false),
               buildTextField("Password", "*********", true),
               buildTextField("Location", "Jodhpur, Rajasthan", false),
-              SizedBox(height: mqh * 0.02),
+              SizedBox(height: 20.h),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   OutlinedButton(
                       style: OutlinedButton.styleFrom(
-                          side:
-                              BorderSide(width: 2, color: Colors.purpleAccent),
+                          side: BorderSide(
+                              width: 2.w, color: Colors.purpleAccent),
                           shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(15))),
+                              borderRadius: BorderRadius.circular(15.sp))),
                       onPressed: () {
                         Navigator.pop(context);
                       },
                       child: Text(
                         'CANCEL',
                         style: TextStyle(
-                            fontSize: 14,
-                            letterSpacing: 7,
-                            color: Colors.white),
+                            fontWeight: FontWeight.w600,
+                            fontSize: 14.sp,
+                            letterSpacing: 7.sp,
+                            color: context.read<ThemeBloc>().state ==
+                                    ThemeMode.dark
+                                ? Colors.white
+                                : Colors.black),
                       )),
                   ElevatedButton(
                       style: ElevatedButton.styleFrom(
                           primary: Colors.purpleAccent,
                           shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(15),
+                              borderRadius: BorderRadius.circular(15.sp),
                               side: BorderSide(
-                                  width: 2, color: Colors.purpleAccent))),
+                                  width: 2.w, color: Colors.purpleAccent))),
                       onPressed: () {},
                       child: Text(
                         'SAVE',
                         style: TextStyle(
+                            fontWeight: FontWeight.w600,
                             fontSize: 15,
-                            letterSpacing: 7,
-                            color: Colors.white),
+                            letterSpacing: 7.sp,
+                            color: context.read<ThemeBloc>().state ==
+                                    ThemeMode.dark
+                                ? Colors.white
+                                : Colors.black),
                       )),
                 ],
               )
@@ -148,16 +174,30 @@ class _personalDataState extends State<personalData> {
                     });
                   },
                   icon: Icon(FontAwesomeIcons.solidEye,
-                      color: Colors.white, size: 15))
+                      color: context.read<ThemeBloc>().state == ThemeMode.dark
+                          ? Colors.white
+                          : Colors.black,
+                      size: 15))
               : null,
           labelText: labelText,
-          labelStyle: TextStyle(fontSize: 15, color: Colors.grey.shade400),
+          labelStyle: TextStyle(
+              fontSize: 18,
+              color: context.read<ThemeBloc>().state == ThemeMode.dark
+                  ? Colors.grey.shade400
+                  : Colors.black),
           hintText: placeholder,
           hintStyle: TextStyle(
-              fontSize: 15, color: Colors.white, fontWeight: FontWeight.bold),
+              fontSize: 15,
+              color: context.read<ThemeBloc>().state == ThemeMode.dark
+                  ? Colors.white
+                  : Colors.black,
+              fontWeight: FontWeight.bold),
           floatingLabelBehavior: FloatingLabelBehavior.always,
-          enabledBorder:
-              OutlineInputBorder(borderSide: BorderSide(color: Colors.white)),
+          enabledBorder: OutlineInputBorder(
+              borderSide: BorderSide(
+                  color: context.read<ThemeBloc>().state == ThemeMode.dark
+                      ? Colors.white
+                      : Colors.black)),
         ),
       ),
     );
