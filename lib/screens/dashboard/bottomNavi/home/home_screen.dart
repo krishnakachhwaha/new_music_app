@@ -4,8 +4,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:music_app/screens/dashboard/bottomNavi/home/home_pg.dart';
-import 'package:music_app/screens/dashboard/bottomNavi/premium/premium_pg.dart';
 import 'package:music_app/screens/play%20screen/play_pg.dart';
+import 'package:music_app/widgets/BottomSheets/PymentBottomSheet.dart';
 import 'package:music_app/widgets/usefull_icon_button/playButton.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 import '../../../../Bloc/theme_bloc.dart';
@@ -45,7 +45,7 @@ class _ExampleState extends State<Example> {
     home_pg(),
     search_pg(),
     library_pg(),
-    premium_pg(),
+    RazorPayment()
   ];
 
   @override

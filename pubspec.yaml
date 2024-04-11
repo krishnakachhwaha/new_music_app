@@ -46,6 +46,7 @@ dependencies:
   flutter_spinkit: any
   awesome_snackbar_content: ^0.1.3
   sliding_up_panel: any
+  razorpay_flutter: any
   floating_action_bubble: any
   auto_size_text: any
   floating_navbar: any
